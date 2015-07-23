@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <form method = "POST">
+    {% csrf_token %}
+        <label>Rental Name</label><br>
+        <input name = "rental_name" value = "{{ rental.rental_name }}"><br>
+        <label>Address</label><br>
+        <input name = "address" value = "{{ rental.address }}"><br>
+        <label>State</label><br>
+        <input name = "state" value = "{{ rental.state }}"><br>
+        <label>Zipcode</label><br>
+        <input name = "zipcode" value = "{{ rental.zipcode }}"><br>
+    <button type="submit" value = "SAVE" name="action">Save Changes</button>
+    <button type="submit" value="DELETE" name="action">Delete Property</button>
+    </form>
+{% endblock %}

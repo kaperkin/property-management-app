@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{{ rental.rental_name }}<br>
+{{ rental.address }}<br>
+{{ rental.state }}<br>
+{{ rental.zipcode }}<br>
+<a href = "/update_building/{{ rental.id }}"><button>Update Building</button></a>
+{% endblock %}

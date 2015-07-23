@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <form method = "POST">
+        {% csrf_token %}
+        <label>Building</label><br>
+        <select name = "rental">
+             {% for rental in rental_list %}
+            <option value="{{ rental.id }}" {% if rental.id = maintenance.rental.id %}selected{% endif %}>{{ rental.rental_name }}</option>
+            {% endfor %}
+        </select><br>
+        <label>Unit Number</label><br>
+        <input name = "maintenance_rental" value = "{{ maintenance.maintenance_rental }}"><br>
+    <label>Tenant Name</label><br>
+        <input name = "maintenance_author" value = "{{ maintenance.maintenance_author }}"><br>
+    <label>Maintenance Request</label><br>
+        <input name = "maintenance_request" value = "{{ maintenance.maintenance_request }}"><br>
+       {{ maintenance.maintenance_date }}<br>
+
+        <button type="submit" value = "SAVE">Save Changes</button>
+    </form>
+{% endblock %}

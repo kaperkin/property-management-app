@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{{ maintenance.maintenance_rental }}<br>
+{{ maintenance.maintenance_author }}<br>
+{{ maintenance.maintenance_request }}<br>
+{{ maintenance.maintenance_date }}<br>
+<a href = "/update_request/{{ maintenance.id }}"<button>Update Request</button></a>
+{% endblock %}

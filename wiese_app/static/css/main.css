@@ -1,0 +1,25 @@
+body {
+    background-color: #243949;
+    color: white;
+}
+
+header {
+    font-size: 3em;
+    text-align: center;
+    height: 200px;
+
+}
+
+a {
+    color: #fff9fe;
+}
+
+input {
+    background-color: #195f77;
+    color: #fff9fe;
+}
+
+.welcome_button {
+    height: 100px;
+    width: 200px;
+}
