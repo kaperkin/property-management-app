@@ -19,7 +19,21 @@ input {
     color: #fff9fe;
 }
 
+.content{
+    display: none;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
 .welcome_button {
     height: 100px;
     width: 200px;
+    border-radius: 12px;
+    box-shadow: -5px 5px 15px  #fff9fe;
+    font-size: large;
+    color: #243949;
 }

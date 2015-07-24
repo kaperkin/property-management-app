@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <a href="/rental/0/">Click to add a new rental property</a><br>
+    <a href="/maintenance/0/">Click here to add a new maintenance request</a>
+<h1>Building Details</h1>
+{% if rental_list %}
+    <ul>
+    {% for rental in rental_list %}
+        <li><a href="/rental/{{ rental.id }}/">{{ rental.rental_name }}</a></li>
+            <ul>
+            <li>{{ rental.address }}</li>
+            <li>{{ rental.state }}</li>
+            <li>{{ rental.zipcode }}</li>
+            </ul>
+        <br>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No rentals are available.</p>
+{% endif %}
+
+<a href="/maintenance_all/">
+<h1>Maintenance Requests</h1>
+</a>
+{% if maintenance_list %}
+    <ul>
+    {% for maintenance in maintenance_list %}
+        <li><a href="/maintenance/{{ maintenance.id }}/">{{ maintenance.rental.rental_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No maintenance requests are available.</p>
+{% endif %}
+{% endblock %}

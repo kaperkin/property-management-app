@@ -1,11 +1,27 @@
 {% extends "base_generic.html" %}
 {% block content %}
-    <a href="/rental/0/">Click to add a new rental property</a><br>
-    <a href="/maintenance/0/">Click here to add a new maintenance request</a>
-<h1>Building Details</h1>
+    <div class="wrapper">
+        <!--show renter view, hide all else -->
+        <button class="welcome_button" id="renterButton")>Renter</button>
+        <!--show owner view(old index) hide all else -->
+        <button class="welcome_button" id="ownerButton" >Manager</button></a>
+    </div>
+
+    <!--renter view -->
+    <!--on click show update_request section index[0] -->
+    <button class="content" id="renter_maintenance_link" >Click to add a new maintenance request</button><br>
+
+    <!--owner view -->
+    <div class="content" id="owner_view">
+    <!--on click show update_building section index[0] -->
+    <button id="owner_property_add" >Click to add a new rental property</button><br>
+    <!--on click show update request index[0] -->
+    <button id="owner_maintenance_add">Click here to add a new maintenance request</button>
+    <h1>Building Details</h1>
 {% if rental_list %}
     <ul>
     {% for rental in rental_list %}
+         <!--on click update property details -->
         <li><a href="/rental/{{ rental.id }}/">{{ rental.rental_name }}</a></li>
             <ul>
             <li>{{ rental.address }}</li>
@@ -19,14 +35,35 @@
     <p>No rentals are available.</p>
 {% endif %}
 
+ <!--show all maintenance requests -->
+
 <h1>Maintenance Requests</h1>
 {% if maintenance_list %}
     <ul>
     {% for maintenance in maintenance_list %}
+         <!-- on click show update request  -->
         <li><a href="/maintenance/{{ maintenance.id }}/">{{ maintenance.rental.rental_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No maintenance requests are available.</p>
 {% endif %}
+</div>
+
+    <!--update maintenance, add maintenance request -->
+    <div  class="content" id="maintenanceRequest" method = "POST">
+        {% csrf_token %}
+        <label>Building</label><br>
+        <select name = "rental" id="buildingList">
+        </select><br>
+        <label>Unit Number</label><br>
+        <input name = "maintenance_rental" id="maintenance_rental"><br>
+    <label>Tenant Name</label><br>
+        <input name = "maintenance_author" id="maintenance_author"><br>
+    <label>Maintenance Request</label><br>
+        <input name = "maintenance_request" id="maintenance_request"><br>
+
+        <button onclick="sendMaintenanceRequest()" value = "SAVE">Save Changes</button>
+    </div>
+
 {% endblock %}

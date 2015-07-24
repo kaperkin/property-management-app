@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+    {% for maintenance in maintenance_list %}
+        <ul>
+        <li>{{ maintenance.rental.rental_name  }}</li>
+            <ul>
+                <li>{{ maintenance.maintenance_rental }}</li>
+                <li>{{ maintenance.maintenance_author }}</li>
+                <li>{{ maintenance.maintenance_request }}</li>
+                <li>{{ maintenance.maintenance_date }}</li>
+            </ul>
+        <a href = "/update_request/{{ maintenance.id }}"<button>Update Request</button></a>
+        </ul>
+    {% endfor %}
+{% endblock %}

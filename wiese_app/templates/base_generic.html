@@ -12,9 +12,12 @@
    <header>
         <a href="/"><span>Wiese Property</span> </a>
    </header>
-{% block content %}
-Content will be placed here.
-{% endblock %}
+<div id="content">
+    {% block content %}
+        Content will be placed here.
+    {% endblock %}
+</div>
 </body>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </html>
 
