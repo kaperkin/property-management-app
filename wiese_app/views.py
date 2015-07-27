@@ -16,7 +16,12 @@ def buildings(request):
     rentals = Rentals.objects.all()
     buildings = []
     for rental in rentals:
-        building={"name": rental.rental_name, "id": rental.id,}
+        building= {
+            "rental_name": rental.rental_name,
+            "id": rental.id,
+            "address": rental.address,
+            "state" : rental.state,
+            "zipcode": rental.zipcode}
         buildings.append(building)
     return HttpResponse(json.dumps(buildings))
 

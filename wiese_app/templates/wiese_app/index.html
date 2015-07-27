@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
+    <!-- welcome view -->
     <div class="wrapper">
         <!--show renter view, hide all else -->
         <button class="welcome_button" id="renterButton")>Renter</button>
@@ -18,36 +19,20 @@
     <!--on click show update request index[0] -->
     <button id="owner_maintenance_add">Click here to add a new maintenance request</button>
     <h1>Building Details</h1>
-{% if rental_list %}
-    <ul>
-    {% for rental in rental_list %}
+    <ul id="buildingDetail">
          <!--on click update property details -->
-        <li><a href="/rental/{{ rental.id }}/">{{ rental.rental_name }}</a></li>
-            <ul>
-            <li>{{ rental.address }}</li>
-            <li>{{ rental.state }}</li>
-            <li>{{ rental.zipcode }}</li>
-            </ul>
         <br>
-    {% endfor %}
     </ul>
-{% else %}
-    <p>No rentals are available.</p>
-{% endif %}
 
  <!--show all maintenance requests -->
 
 <h1>Maintenance Requests</h1>
-{% if maintenance_list %}
-    <ul>
-    {% for maintenance in maintenance_list %}
+    <ul id="maintenanceDetail">
+
          <!-- on click show update request  -->
-        <li><a href="/maintenance/{{ maintenance.id }}/">{{ maintenance.rental.rental_name }}</a></li>
-    {% endfor %}
+
+
     </ul>
-{% else %}
-    <p>No maintenance requests are available.</p>
-{% endif %}
 </div>
 
     <!--update maintenance, add maintenance request -->
