@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     #new url
     url(r'^$', views.index, name='index'),
     url(r'^buildings/$', views.buildings, name="buildings"),
-    url(r'^maintenance/$', views.maintenance_request, name="maintenance_request"),
+    url(r'^maintenance/$', views.maintenance, name="maintenance"),
 
     #############################################
     url(r'^old/$', old_views.welcome, name='old_welcome'),

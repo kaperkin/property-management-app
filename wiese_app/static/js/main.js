@@ -1,83 +1,142 @@
 //buildings = [{"name":"building X"}, {"name":"building Y"}, {"name":"building Z"}];
 
-function reqListener() {
+function buildingListener() {
     console.log(this.responseText);
-    buildings = JSON.parse(this.responseText);
-    console.log(buildings)
+    window.buildings = JSON.parse(this.responseText);
     for (i = 0; i < buildings.length; i++) {
         console.log(buildings[i].rental_name)
     }
+    showOwnerView();
 }
 
-var oReq = new XMLHttpRequest();
-oReq.onload = reqListener;
-oReq.open("get", "/buildings/", true);
-oReq.send();
+function getBuildings(){
+    oReq = new XMLHttpRequest();
+    oReq.onload = buildingListener;
+    oReq.open("get", "/buildings/", true);
+    oReq.send();
+}
 
+
+function maintenanceListener() {
+    console.log(this.responseText);
+    window.maintenances = JSON.parse(this.responseText);
+    //for (i = 0; i < maintenances.length; i++) {
+    //    console.log(maintenances[i].maintenance_request)
+    //}
+}
+
+mReq = new XMLHttpRequest();
+mReq.onload = maintenanceListener;
+mReq.open("get", "/maintenance/", true);
+mReq.send();
+
+window.welcome_buttons = document.getElementsByClassName("welcome_button");
 // Show welcome buttons
-var welcome_buttons = document.getElementsByClassName("welcome_button");
-for (i = 0; i < welcome_buttons.length; i++) {
-    welcome_buttons[i].style.display = "block";
+function welcomeButtons() {
+    everythingElse = document.getElementsByClassName("content")
+    for (i=0; i<everythingElse.length; i++){
+        everythingElse[i].style.display="none";
+    }
+    
+    for (i = 0; i < welcome_buttons.length; i++) {
+        welcome_buttons[i].style.display = "block";
+    }
 }
-;
+
 
 // Add Event Listeners
+document.getElementById("header").addEventListener("click", welcomeButtons);
 document.getElementById("renterButton").addEventListener("click", showRenterView);
 document.getElementById("renter_maintenance_link").addEventListener("click", addMaintenanceRequest);
-document.getElementById("ownerButton").addEventListener("click", showOwnerView);
+document.getElementById("ownerButton").addEventListener("click", getBuildings);
 document.getElementById("owner_maintenance_add").addEventListener("click", addMaintenanceRequest);
+document.getElementById("owner_property_add").addEventListener("click", addProperty);
 
 // hides welcome buttons and shows renter view
 function showRenterView() {
     for (i = 0; i < welcome_buttons.length; i++) {
         welcome_buttons[i].style.display = "none";
     }
-    ;
-    element = document.getElementById("renter_maintenance_link");
+    var element = document.getElementById("renter_maintenance_link");
     element.style.display = "block";
-};
+}
+
 
 // hides welcome button and shows owner view
 function showOwnerView() {
     for (i = 0; i < welcome_buttons.length; i++) {
         welcome_buttons[i].style.display = "none";
     }
-    element = document.getElementById("owner_view");
+    var element = document.getElementById("owner_view");
     element.style.display = "block";
     // loop to append building details.
     for (i = 0; i < buildings.length; i++) {
-        text = document.getElementById("buildingDetail")
+        text = document.getElementById("buildingDetail");
         // add building name
-        buildingName = document.createElement("li")
-        buildingName.innerHTML = buildings[i].rental_name
-        text.appendChild(buildingName)
+        var buildingName = document.createElement("li");
+        buildingName.style.textDecoration="underline";
+        buildingName.setAttribute("data-id", buildings[i].id);
+        buildingName.addEventListener("click", function(e){
+          editProperty(e.target.getAttribute("data-id"));
+        });
+        buildingName.innerHTML = buildings[i].rental_name;
+        text.appendChild(buildingName);
         // add blank ul
-        blankUL = document.createElement("ul")
-        text.appendChild(blankUL)
+        var blankUL = document.createElement("ul");
+        text.appendChild(blankUL);
         //add building address
-        buildingAddress = document.createElement("li")
-        buildingAddress.innerHTML = buildings[i].address
-        blankUL.appendChild(buildingAddress)
+        var buildingAddress = document.createElement("li");
+        buildingAddress.innerHTML = buildings[i].address;
+        blankUL.appendChild(buildingAddress);
         // add building state
-        buildingState = document.createElement("li")
-        buildingState.innerHTML = buildings[i].state
-        blankUL.appendChild(buildingState)
+        var buildingState = document.createElement("li");
+        buildingState.innerHTML = buildings[i].state;
+        blankUL.appendChild(buildingState);
         // add building zipcode
-        buildingZip = document.createElement("li")
-        buildingZip.innerHTML = buildings[i].zipcode
+        var buildingZip = document.createElement("li");
+        buildingZip.innerHTML = buildings[i].zipcode;
         blankUL.appendChild(buildingZip)
 
+    }
+
+    //var rentalName = maintenances.objects.filter(rental == "Broadway Building");
+    //var text = document.getElementById("maintenanceDetail");
+    //var buildingName = document.createElement("a");
+    //buildingName.innerHTML = rentalName;
+    //text.appendChild(buildingName);
+        // loop to append maintenance details.
+    for (i = 0; i < maintenances.length; i++) {
+        var text = document.getElementById("maintenanceDetail");
+        // add building name
+        var buildingName = document.createElement("li");
+        buildingName.innerHTML = maintenances[i].rental;
+        text.appendChild(buildingName);
+        // add blank ul
+        var blankUL = document.createElement("ul");
+        text.appendChild(blankUL);
+        //add unit number
+        var unit = document.createElement("li");
+        unit.innerHTML = maintenances[i].maintenance_rental;
+        blankUL.appendChild(unit);
+        // add maintenance author
+        var maintenanceAuthor = document.createElement("li");
+        maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
+        blankUL.appendChild(maintenanceAuthor);
+        // add maintenance request
+        var maintenanceRequest = document.createElement("li");
+        maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
+        blankUL.appendChild(maintenanceRequest)
     }
 }
 
 
 function addMaintenanceRequest() {
-    previousElement = document.getElementById("renter_maintenance_link");
+    var previousElement = document.getElementById("renter_maintenance_link");
     previousElement.style.display = "none";
-    ownerElement = document.getElementById("owner_view");
+    var ownerElement = document.getElementById("owner_view");
     ownerElement.style.display = "none";
 
-    element = document.getElementById("maintenanceRequest");
+    var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
     // Get drop down list for building list
     var bl = document.getElementById("buildingList");
@@ -93,6 +152,33 @@ function addMaintenanceRequest() {
         bl.appendChild(option);
     }
 }
+
+function addProperty() {
+    var ownerElement = document.getElementById("owner_view");
+    ownerElement.style.display = "none";
+
+    var element = document.getElementById("updateAddBuilding");
+    element.style.display = "block";
+    document.getElementById("id").value="0";
+}
+
+function editProperty(id){
+    console.log(id);
+    for (i=0; i<window.buildings.length; i++){
+        b=window.buildings[i];
+        if (b.id == id){
+            building = b;
+            break;
+        }
+    }
+    addProperty();
+    document.getElementById("id").value=building.id;
+    document.getElementById("rental_name").value=building.rental_name;
+    document.getElementById("address").value=building.address;
+    document.getElementById("state").value=building.state;
+    document.getElementById("zipcode").value=building.zipcode;
+}
+
 
 // general function to post data
 // called by:
@@ -112,6 +198,20 @@ function sendPost(item, url) {
     request.send(form_data);
 }
 
+function sendDelete(id) {
+    // create new FormData.
+    // FormData holds a set of key/value pairs to send using XMLHttpRequest. It works like a form's submit button.
+    var form_data = new FormData();
+    // adds each key-value pair to the FormData
+    form_data.append("id", id);
+    form_data.append("action", "DELETE");
+    // Create new XMLHttpRequest
+    var request = new XMLHttpRequest();
+
+    request.open("POST", "/buildings/");
+    request.send(form_data);
+}
+
 // Called by clicking save on maintenance request form
 function sendMaintenanceRequest() {
     // creates a dictionary to hold the information on the form
@@ -124,11 +224,51 @@ function sendMaintenanceRequest() {
     // calls the sendPost function with the dictionary created and an url
     sendPost(item, "/maintenance/");
     // hides request form
-    element = document.getElementById("maintenanceRequest");
+    var element = document.getElementById("maintenanceRequest");
     element.style.display = "none";
     // shows welcome buttons
     var welcome_buttons = document.getElementsByClassName("welcome_button");
     for (i = 0; i < welcome_buttons.length; i++) {
         welcome_buttons[i].style.display = "block";
     }
+}
+
+function sendBuildingUpdate() {
+    // creates a dictionary to hold the information on the form
+    var item = {
+        "action": "save",
+        "id": document.getElementById("id").value,
+        "rental_name": document.getElementById("rental_name").value,
+        "address": document.getElementById("address").value,
+        "state": document.getElementById("state").value,
+        "zipcode": document.getElementById("zipcode").value,
+    };
+    // calls the sendPost function with the dictionary created and an url
+    sendPost(item, "/buildings/");
+    // hides request form
+    var previousElement = document.getElementById("updateAddBuilding");
+    previousElement.style.display = "none";
+    // shows owner view
+    var element = document.getElementById("buildingDetail");
+    element.innerHTML = "";
+    getBuildings();
+}
+
+function deleteBuilding() {
+    var id = document.getElementById("id").value;
+    console.log(id);
+    for (i = 0; i < window.buildings.length; i++) {
+        b = window.buildings[i];
+        if (b.id == id) {
+            building = b;
+            break;
+        }
+    }
+    sendDelete(id);
+    var previousElement = document.getElementById("updateAddBuilding");
+    previousElement.style.display = "none";
+    // shows owner view
+    var element = document.getElementById("buildingDetail");
+    element.innerHTML = "";
+    getBuildings();
 }

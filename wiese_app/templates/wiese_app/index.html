@@ -36,7 +36,7 @@
 </div>
 
     <!--update maintenance, add maintenance request -->
-    <div  class="content" id="maintenanceRequest" method = "POST">
+    <div  class="content" id="maintenanceRequest" method="POST">
         {% csrf_token %}
         <label>Building</label><br>
         <select name = "rental" id="buildingList">
@@ -49,6 +49,21 @@
         <input name = "maintenance_request" id="maintenance_request"><br>
 
         <button onclick="sendMaintenanceRequest()" value = "SAVE">Save Changes</button>
+    </div>
+
+    <!-- update building, add new property -->
+    <div class="content" id="updateAddBuilding" method="POST">
+        <input type="hidden" value="0" id="id">
+        <label>Rental Name</label><br>
+        <input name = "rental_name" id="rental_name" ><br>
+        <label>Address</label><br>
+        <input name = "address" id="address"><br>
+        <label>State</label><br>
+        <input name = "state" id="state"><br>
+        <label>Zipcode</label><br>
+        <input name = "zipcode" id="zipcode"><br>
+    <button onclick="sendBuildingUpdate()" value = "SAVE" name="action">Save Changes</button>
+    <button onclick="deleteBuilding()" value="DELETE" name="action">Delete Property</button>
     </div>
 
 {% endblock %}
