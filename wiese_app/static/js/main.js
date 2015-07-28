@@ -16,6 +16,21 @@ function getBuildings(){
     oReq.send();
 }
 
+function renterBuildingListener() {
+    console.log(this.responseText);
+    window.buildings = JSON.parse(this.responseText);
+    for (i = 0; i < buildings.length; i++) {
+        console.log(buildings[i].rental_name)
+    }
+    addMaintenanceRequest();
+}
+
+function renterGetBuildings(){
+    oReq = new XMLHttpRequest();
+    oReq.onload = renterBuildingListener;
+    oReq.open("get", "/buildings/", true);
+    oReq.send();
+}
 
 function maintenanceListener() {
     console.log(this.responseText);
@@ -37,7 +52,6 @@ function welcomeButtons() {
     for (i=0; i<everythingElse.length; i++){
         everythingElse[i].style.display="none";
     }
-    
     for (i = 0; i < welcome_buttons.length; i++) {
         welcome_buttons[i].style.display = "block";
     }
@@ -47,7 +61,7 @@ function welcomeButtons() {
 // Add Event Listeners
 document.getElementById("header").addEventListener("click", welcomeButtons);
 document.getElementById("renterButton").addEventListener("click", showRenterView);
-document.getElementById("renter_maintenance_link").addEventListener("click", addMaintenanceRequest);
+document.getElementById("renter_maintenance_link").addEventListener("click", renterGetBuildings);
 document.getElementById("ownerButton").addEventListener("click", getBuildings);
 document.getElementById("owner_maintenance_add").addEventListener("click", addMaintenanceRequest);
 document.getElementById("owner_property_add").addEventListener("click", addProperty);
@@ -223,14 +237,7 @@ function sendMaintenanceRequest() {
     };
     // calls the sendPost function with the dictionary created and an url
     sendPost(item, "/maintenance/");
-    // hides request form
-    var element = document.getElementById("maintenanceRequest");
-    element.style.display = "none";
-    // shows welcome buttons
-    var welcome_buttons = document.getElementsByClassName("welcome_button");
-    for (i = 0; i < welcome_buttons.length; i++) {
-        welcome_buttons[i].style.display = "block";
-    }
+welcomeButtons();
 }
 
 function sendBuildingUpdate() {
@@ -245,12 +252,6 @@ function sendBuildingUpdate() {
     };
     // calls the sendPost function with the dictionary created and an url
     sendPost(item, "/buildings/");
-    // hides request form
-    var previousElement = document.getElementById("updateAddBuilding");
-    previousElement.style.display = "none";
-    // shows owner view
-    var element = document.getElementById("buildingDetail");
-    element.innerHTML = "";
     getBuildings();
 }
 
@@ -267,8 +268,5 @@ function deleteBuilding() {
     sendDelete(id);
     var previousElement = document.getElementById("updateAddBuilding");
     previousElement.style.display = "none";
-    // shows owner view
-    var element = document.getElementById("buildingDetail");
-    element.innerHTML = "";
     getBuildings();
 }
