@@ -48,7 +48,7 @@ mReq.send();
 window.welcome_buttons = document.getElementsByClassName("welcome_button");
 // Show welcome buttons
 function welcomeButtons() {
-    everythingElse = document.getElementsByClassName("content")
+    everythingElse = document.getElementsByClassName("content");
     for (i=0; i<everythingElse.length; i++){
         everythingElse[i].style.display="none";
     }
@@ -65,6 +65,7 @@ document.getElementById("renter_maintenance_link").addEventListener("click", ren
 document.getElementById("ownerButton").addEventListener("click", getBuildings);
 document.getElementById("owner_maintenance_add").addEventListener("click", addMaintenanceRequest);
 document.getElementById("owner_property_add").addEventListener("click", addProperty);
+document.getElementById("all_maintenance_requests").addEventListener("click", allMaintenanceRequests);
 
 // hides welcome buttons and shows renter view
 function showRenterView() {
@@ -88,10 +89,10 @@ function showOwnerView() {
         text = document.getElementById("buildingDetail");
         // add building name
         var buildingName = document.createElement("li");
-        buildingName.style.textDecoration="underline";
+        buildingName.style.textDecoration = "underline";
         buildingName.setAttribute("data-id", buildings[i].id);
-        buildingName.addEventListener("click", function(e){
-          editProperty(e.target.getAttribute("data-id"));
+        buildingName.addEventListener("click", function (e) {
+            editProperty(e.target.getAttribute("data-id"));
         });
         buildingName.innerHTML = buildings[i].rental_name;
         text.appendChild(buildingName);
@@ -112,37 +113,26 @@ function showOwnerView() {
         blankUL.appendChild(buildingZip)
 
     }
-
-    //var rentalName = maintenances.objects.filter(rental == "Broadway Building");
-    //var text = document.getElementById("maintenanceDetail");
-    //var buildingName = document.createElement("a");
-    //buildingName.innerHTML = rentalName;
-    //text.appendChild(buildingName);
-        // loop to append maintenance details.
-    for (i = 0; i < maintenances.length; i++) {
-        var text = document.getElementById("maintenanceDetail");
-        // add building name
-        var buildingName = document.createElement("li");
-        buildingName.innerHTML = maintenances[i].rental;
-        text.appendChild(buildingName);
-        // add blank ul
-        var blankUL = document.createElement("ul");
-        text.appendChild(blankUL);
-        //add unit number
-        var unit = document.createElement("li");
-        unit.innerHTML = maintenances[i].maintenance_rental;
-        blankUL.appendChild(unit);
-        // add maintenance author
-        var maintenanceAuthor = document.createElement("li");
-        maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
-        blankUL.appendChild(maintenanceAuthor);
-        // add maintenance request
-        var maintenanceRequest = document.createElement("li");
-        maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
-        blankUL.appendChild(maintenanceRequest)
+    // loop to append maintenance details.
+    var nameList = {};
+    for(var i=0; i<maintenances.length; i++){
+        var rental = maintenances[i].rental;
+            if (!nameList.hasOwnProperty(rental)) {
+                nameList[rental] = rental;
+                console.log(nameList);
+                var text = document.getElementById("maintenanceDetail");
+                // add building name
+                var buildingName = document.createElement("li");
+                buildingName.innerHTML = rental;
+                buildingName.style.textDecoration="underline";
+                buildingName.setAttribute("id", maintenances[i].id);
+                buildingName.addEventListener("click", function(e){
+                   buildingMaintReq(e.target.getAttribute("id"))
+                });
+                text.appendChild(buildingName);
+            }
     }
 }
-
 
 function addMaintenanceRequest() {
     var previousElement = document.getElementById("renter_maintenance_link");
@@ -240,6 +230,7 @@ function sendMaintenanceRequest() {
 welcomeButtons();
 }
 
+
 function sendBuildingUpdate() {
     // creates a dictionary to hold the information on the form
     var item = {
@@ -269,4 +260,45 @@ function deleteBuilding() {
     var previousElement = document.getElementById("updateAddBuilding");
     previousElement.style.display = "none";
     getBuildings();
+}
+
+function allMaintenanceRequests() {
+    var previousElement = document.getElementById("owner_view");
+    previousElement.style.display = "none";
+
+    var element = document.getElementById("showAllMaintenance");
+    element.style.display = "block";
+
+    for (i = 0; i < maintenances.length; i++) {
+        var text = document.getElementById("showAllMaintenance");
+        // add building name
+        var buildingName = document.createElement("li");
+        buildingName.innerHTML = maintenances[i].rental;
+        text.appendChild(buildingName);
+        // add blank ul
+        var blankUL = document.createElement("ul");
+        text.appendChild(blankUL);
+        //add unit number if it exists
+        if (maintenances[i].maintenance_rental != "") {
+            unit = document.createElement("li");
+            unit.innerHTML = maintenances[i].maintenance_rental;
+            blankUL.appendChild(unit);
+        }
+        // add maintenance author
+        var maintenanceAuthor = document.createElement("li");
+        maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
+        blankUL.appendChild(maintenanceAuthor);
+        // add maintenance request
+        var maintenanceRequest = document.createElement("li");
+        maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
+        blankUL.appendChild(maintenanceRequest)
+    }
+}
+
+function buildingMaintReq(e){
+   console.log(this);
+    //create a for loop to go through each maintenance object
+    //if the object is equal to the id, then add it
+
+
 }

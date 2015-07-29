@@ -1,3 +1,13 @@
+# TO DO
+# -display only building names under maintenance requests
+# - link on building names to view all maintenance requests for that buildings
+# -link on individual maintenance requests to edit
+# - add option of maintenance requests for "new, in progress, completed"
+# - move completed maintenance requests to archive
+# - create users with permissions
+#       - tenants only able to create maintenance requests for their buildings
+
+
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext, loader
 from .models import Rentals, Maintenance
@@ -57,6 +67,7 @@ def maintenance(request):
     for main in maintenanceList:
         maintenance={
             "rental": main.rental.rental_name,
+            "id": main.rental.id,
             "maintenance_rental": main.maintenance_rental,
             "maintenance_author": main.maintenance_author,
             "maintenance_request": main.maintenance_request,
