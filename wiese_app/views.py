@@ -1,5 +1,4 @@
 # TO DO
-# -display only building names under maintenance requests
 # - link on building names to view all maintenance requests for that buildings
 # -link on individual maintenance requests to edit
 # - add option of maintenance requests for "new, in progress, completed"
@@ -54,7 +53,11 @@ def buildings(request):
 @csrf_exempt
 def maintenance(request):
     if request.POST:
-        m = Maintenance()
+        print(request.POST)
+        if request.POST["mainId"]== "0":
+            m = Maintenance()
+        else:
+            m = Maintenance.objects.filter(id=request.POST["mainId"])[0]
         m.rental = Rentals.objects.filter(id= request.POST["building_id"])[0]
         m.maintenance_rental = request.POST["maintenance_rental"]
         m.maintenance_author = request.POST["maintenance_author"]
@@ -66,6 +69,7 @@ def maintenance(request):
     maintenances = []
     for main in maintenanceList:
         maintenance={
+            "mainId": main.id,
             "rental": main.rental.rental_name,
             "id": main.rental.id,
             "maintenance_rental": main.maintenance_rental,

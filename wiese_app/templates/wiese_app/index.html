@@ -38,6 +38,7 @@
     <!--update maintenance, add maintenance request -->
     <div  class="content" id="maintenanceRequest" method="POST">
         {% csrf_token %}
+        <input type="hidden" value="0" id="mainId">
         <label>Building</label><br>
         <select name = "rental" id="buildingList">
         </select><br>

@@ -6,7 +6,8 @@ function buildingListener() {
     for (i = 0; i < buildings.length; i++) {
         console.log(buildings[i].rental_name)
     }
-    showOwnerView();
+    getMaintenance();
+
 }
 
 function getBuildings(){
@@ -38,13 +39,16 @@ function maintenanceListener() {
     //for (i = 0; i < maintenances.length; i++) {
     //    console.log(maintenances[i].maintenance_request)
     //}
+    showOwnerView();
 }
-
-mReq = new XMLHttpRequest();
-mReq.onload = maintenanceListener;
-mReq.open("get", "/maintenance/", true);
-mReq.send();
-
+//I made this into a function so that I could call it to refresh the data in owner view.
+// Now it is not showing the data at all in owner view
+function getMaintenance() {
+    mReq = new XMLHttpRequest();
+    mReq.onload = maintenanceListener;
+    mReq.open("get", "/maintenance/", true);
+    mReq.send();
+}
 window.welcome_buttons = document.getElementsByClassName("welcome_button");
 // Show welcome buttons
 function welcomeButtons() {
@@ -84,9 +88,10 @@ function showOwnerView() {
     }
     var element = document.getElementById("owner_view");
     element.style.display = "block";
+    text = document.getElementById("buildingDetail");
+    text.innerHTML="";
     // loop to append building details.
     for (i = 0; i < buildings.length; i++) {
-        text = document.getElementById("buildingDetail");
         // add building name
         var buildingName = document.createElement("li");
         buildingName.style.textDecoration = "underline";
@@ -115,12 +120,14 @@ function showOwnerView() {
     }
     // loop to append maintenance details.
     var nameList = {};
+    var text = document.getElementById("maintenanceDetail");
+    text.innerHTML="";
     for(var i=0; i<maintenances.length; i++){
         var rental = maintenances[i].rental;
+        //if( not nameList has the property of rental)
             if (!nameList.hasOwnProperty(rental)) {
                 nameList[rental] = rental;
                 console.log(nameList);
-                var text = document.getElementById("maintenanceDetail");
                 // add building name
                 var buildingName = document.createElement("li");
                 buildingName.innerHTML = rental;
@@ -139,6 +146,8 @@ function addMaintenanceRequest() {
     previousElement.style.display = "none";
     var ownerElement = document.getElementById("owner_view");
     ownerElement.style.display = "none";
+    var maintElement = document.getElementById("showAllMaintenance");
+    maintElement.style.display="none";
 
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
@@ -154,7 +163,24 @@ function addMaintenanceRequest() {
         option.setAttribute('value', buildings[i].id);
         //add the option to the list
         bl.appendChild(option);
+
     }
+}
+function editMaintenanceRequest(id){
+    console.log(id);
+    for (i=0; i<window.maintenances.length; i++){
+        m=window.maintenances[i];
+        if (m.mainId == id){
+            mainReq = m;
+            break;
+        }
+    }
+    addMaintenanceRequest();
+    document.getElementById("mainId").value=mainReq.mainId;
+    document.getElementById("buildingList").value=mainReq.rental_name;
+    document.getElementById("maintenance_rental").value=mainReq.maintenance_rental;
+    document.getElementById("maintenance_author").value=mainReq.maintenance_author;
+    document.getElementById("maintenance_request").value=mainReq.maintenance_request;
 }
 
 function addProperty() {
@@ -220,6 +246,7 @@ function sendDelete(id) {
 function sendMaintenanceRequest() {
     // creates a dictionary to hold the information on the form
     var item = {
+        "mainId": document.getElementById("mainId").value,
         "building_id": document.getElementById("buildingList").value,
         "maintenance_rental": document.getElementById("maintenance_rental").value,
         "maintenance_author": document.getElementById("maintenance_author").value,
@@ -296,9 +323,44 @@ function allMaintenanceRequests() {
 }
 
 function buildingMaintReq(e){
-   console.log(this);
-    //create a for loop to go through each maintenance object
-    //if the object is equal to the id, then add it
+    var ownerElement = document.getElementById("owner_view");
+    ownerElement.style.display = "none";
+    var text = document.getElementById("showAllMaintenance");
+    text.innerHTML="";
+    text.style.display="block";
+    var item = parseInt(e);
+    for(var i=0; i<maintenances.length; i++){
+        if (item == maintenances[i].id){
+        // add building name
+        var buildingName = document.createElement("li");
+        buildingName.innerHTML = maintenances[i].rental;
+        text.appendChild(buildingName);
+        // add blank ul
+        var blankUL = document.createElement("ul");
+        text.appendChild(blankUL);
+        //add unit number if it exists
+        if (maintenances[i].maintenance_rental != "") {
+            unit = document.createElement("li");
+            unit.innerHTML = maintenances[i].maintenance_rental;
+            blankUL.appendChild(unit);
+        }
+        // add maintenance author
+        var maintenanceAuthor = document.createElement("li");
+        maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
+        blankUL.appendChild(maintenanceAuthor);
+        // add maintenance request
+        var maintenanceRequest = document.createElement("li");
+        maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
+        blankUL.appendChild(maintenanceRequest);
+        //add button to link to update maintenance request
+        var updateButton = document.createElement("button");
+        updateButton.innerHTML="Update";
+        updateButton.setAttribute("onclick", "editMaintenanceRequest("+maintenances[i].mainId+")");
+        blankUL.appendChild(updateButton);
+
+        }
+    }
+
 
 
 }
