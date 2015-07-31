@@ -1,5 +1,17 @@
-{% extends "base_generic.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>
+           Wiese
+   </title>
+   <link rel="stylesheet" type="text/css" href='/css/main.css'/>
+</head>
+<body>
+   <header>
+        <span id="header">Wiese Property</span>
+   </header>
+<div id="content">
     <!-- welcome view -->
     <div class="wrapper">
         <!--show renter view, hide all else -->
@@ -18,21 +30,17 @@
     <button id="owner_property_add" >Click to add a new rental property</button><br>
     <!--on click show update request index[0] -->
     <button id="owner_maintenance_add">Click here to add a new maintenance request</button>
+    <!--show all maintenance requests -->
+
+    <h1 id="all_maintenance_requests" style="text-decoration: underline">Maintenance Requests</h1>
+    <ul id="maintenanceDetail">
+   </ul>
     <h1>Building Details</h1>
     <ul id="buildingDetail">
          <!--on click update property details -->
         <br>
     </ul>
 
- <!--show all maintenance requests -->
-
-<h1 id="all_maintenance_requests" style="text-decoration: underline">Maintenance Requests</h1>
-    <ul id="maintenanceDetail">
-
-         <!-- on click show update request  -->
-
-
-    </ul>
 </div>
 
     <!--update maintenance, add maintenance request -->
@@ -70,4 +78,8 @@
     <div class="content" id="showAllMaintenance">
 
     </div>
-{% endblock %}
+    </div>
+   </body>
+
+<script type="text/javascript" src='/js/main.js'></script>
+</html>

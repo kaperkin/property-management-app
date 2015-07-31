@@ -220,7 +220,7 @@ function sendPost(item, url) {
     }
     // Create new XMLHttpRequest
     var request = new XMLHttpRequest();
-
+    request.onload=getBuildings;
     request.open("POST", url);
     request.send(form_data);
 }
@@ -234,7 +234,7 @@ function sendDelete(id) {
     form_data.append("action", "DELETE");
     // Create new XMLHttpRequest
     var request = new XMLHttpRequest();
-
+    request.onload=getBuildings;
     request.open("POST", "/buildings/");
     request.send(form_data);
 }
@@ -268,7 +268,6 @@ function sendBuildingUpdate() {
     };
     // calls the sendPost function with the dictionary created and an url
     sendPost(item, "/buildings/");
-    getBuildings();
 }
 
 function deleteBuilding() {
@@ -282,9 +281,7 @@ function deleteBuilding() {
         }
     }
     sendDelete(id);
-    var previousElement = document.getElementById("updateAddBuilding");
-    previousElement.style.display = "none";
-    getBuildings();
+    hideContent();
 }
 
 function deleteMaintenanceRequest(id){
@@ -341,7 +338,6 @@ function allMaintenanceRequests() {
 }
 
 function buildingMaintReq(e){
-    
     var text = document.getElementById("showAllMaintenance");
     text.innerHTML="";
     text.style.display="block";

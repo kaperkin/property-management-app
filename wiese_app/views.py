@@ -17,7 +17,7 @@ import json
 
 
 def index(request):
-    template = loader.get_template('wiese_app/index.html')
+    template = loader.get_template('/wiese_app/static/html/index.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 

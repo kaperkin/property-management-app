@@ -1,12 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from wiese_app import views, old_views
-
+from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     #############################################
     #new url
-    url(r'^$', views.index, name='index'),
     url(r'^buildings/$', views.buildings, name="buildings"),
     url(r'^maintenance/$', views.maintenance, name="maintenance"),
 
@@ -22,3 +21,11 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
+# If index.html or nothing (/), then serve static html into url
+###############################################################
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.contrib.staticfiles.views',
+        url(r'^(?:index.html)?$', 'serve', kwargs={'path': 'html/index.html'}),
+        url(r'^(?P<path>(?:js|css|img)/.*)$', 'serve'),
+    )
