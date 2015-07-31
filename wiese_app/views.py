@@ -58,12 +58,15 @@ def maintenance(request):
             m = Maintenance()
         else:
             m = Maintenance.objects.filter(id=request.POST["mainId"])[0]
-        m.rental = Rentals.objects.filter(id= request.POST["building_id"])[0]
-        m.maintenance_rental = request.POST["maintenance_rental"]
-        m.maintenance_author = request.POST["maintenance_author"]
-        m.maintenance_request = request.POST["maintenance_request"]
+        if request.POST["action"] == "DELETE":
+            m.delete()
+        else:
+            m.rental = Rentals.objects.filter(id= request.POST["building_id"])[0]
+            m.maintenance_rental = request.POST["maintenance_rental"]
+            m.maintenance_author = request.POST["maintenance_author"]
+            m.maintenance_request = request.POST["maintenance_request"]
 
-        m.save()
+            m.save()
 
     maintenanceList = Maintenance.objects.all()
     maintenances = []
