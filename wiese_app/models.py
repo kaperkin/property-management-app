@@ -1,10 +1,19 @@
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
+
+class Manager(models.Model):
+    user = models.ForeignKey(User)
+
+class Renter(models.Model):
+    user = models.ForeignKey(User)
+
 
 
 class Rentals(models.Model):
     rental_name = models.CharField(max_length = 200)
     address = models.CharField(max_length = 200)
+    city = models.CharField(max_length = 200)
     state = models.CharField(max_length = 2)
     zipcode = models.CharField(max_length = 5)
 
@@ -13,6 +22,7 @@ class Rentals(models.Model):
 
 class Maintenance(models.Model):
     rental = models.ForeignKey(Rentals)
+    renter = models.ForeignKey(Renter)
     maintenance_rental = models.CharField(max_length = 200)
     maintenance_author = models.CharField(max_length = 200)
     maintenance_request = models.TextField()

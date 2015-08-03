@@ -35,6 +35,10 @@
     <h1 id="all_maintenance_requests" style="text-decoration: underline">Maintenance Requests</h1>
     <ul id="maintenanceDetail">
    </ul>
+
+    <div class="content" id="showAllMaintenance">
+    </div>
+
     <h1>Building Details</h1>
     <ul id="buildingDetail">
          <!--on click update property details -->
@@ -45,7 +49,6 @@
 
     <!--update maintenance, add maintenance request -->
     <div  class="content" id="maintenanceRequest" method="POST">
-        {% csrf_token %}
         <input type="hidden" value="0" id="mainId">
         <label>Building</label><br>
         <select name = "rental" id="buildingList">
@@ -75,9 +78,6 @@
     <button onclick="deleteBuilding()" value="DELETE" name="action">Delete Property</button>
     </div>
 
-    <div class="content" id="showAllMaintenance">
-
-    </div>
     </div>
    </body>
 

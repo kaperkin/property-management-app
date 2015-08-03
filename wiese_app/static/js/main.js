@@ -1,4 +1,6 @@
 //buildings = [{"name":"building X"}, {"name":"building Y"}, {"name":"building Z"}];
+//TO DO
+//registration.html duplicate of login with radio buttons to choose renter or manager
 
 function buildingListener() {
     console.log(this.responseText);
@@ -234,7 +236,11 @@ function sendDelete(id) {
     form_data.append("action", "DELETE");
     // Create new XMLHttpRequest
     var request = new XMLHttpRequest();
-    request.onload=getBuildings;
+    request.onload=function(){
+        getBuildings();
+        allMaintenanceRequests();
+    };
+
     request.open("POST", "/buildings/");
     request.send(form_data);
 }
@@ -379,7 +385,11 @@ function buildingMaintReq(e){
 
         }
     }
+}
 
-
-
+if (window.location.hash == "#view=manager" ){
+    getBuildings();
+}
+if (window.location.hash == "#view=renter" ){
+    renterGetBuildings();
 }

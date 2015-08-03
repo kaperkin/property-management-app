@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     #new url
     url(r'^buildings/$', views.buildings, name="buildings"),
     url(r'^maintenance/$', views.maintenance, name="maintenance"),
+    url(r'^login/$', views.login_view, name="login"),
 
     #############################################
     url(r'^old/$', old_views.welcome, name='old_welcome'),
@@ -27,5 +28,6 @@ if settings.DEBUG:
     urlpatterns += patterns(
         'django.contrib.staticfiles.views',
         url(r'^(?:index.html)?$', 'serve', kwargs={'path': 'html/index.html'}),
+        url(r'^(?:login.html)?$', 'serve', kwargs={'path': 'html/login.html'}),
         url(r'^(?P<path>(?:js|css|img)/.*)$', 'serve'),
     )

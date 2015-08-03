@@ -9,8 +9,14 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext, loader
-from .models import Rentals, Maintenance
+from .models import Rentals, Maintenance, Manager, Renter
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+
+
+
 import json
 # Create your views here.
 
@@ -20,6 +26,28 @@ def index(request):
     template = loader.get_template('/wiese_app/static/html/index.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
+
+@csrf_exempt
+def login_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            managerList = Manager.objects.filter(user = user)
+            renterList = Renter.objects.filter(user = user)
+            if len(managerList) > 0:
+                return HttpResponseRedirect("/index.html#view=manager")
+            elif len(renterList) > 0:
+                return HttpResponseRedirect("/index.html#view=renter")
+            else:
+                return HttpResponseRedirect("/login.html")
+    template = loader.get_template('/wiese_app/static/html/login.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
+
+
 
 @csrf_exempt
 def buildings(request):
