@@ -51,12 +51,5 @@ function buildingOptions(){
             bl.appendChild(option);
         }
 }
-//Will need to createor connect to this function when moved over to login.js file
-getBuildings();
 
-if (window.location.hash == "#view=manager" ){
-    getBuildings();
-}
-if (window.location.hash == "#view=renter" ){
-    renterGetBuildings();
-}
+getBuildings();
