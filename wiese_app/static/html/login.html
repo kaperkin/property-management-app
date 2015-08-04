@@ -1,11 +1,69 @@
-<form action="/login/" method="POST">
-    <label>UserName
-    <input type="text" name="username">
-    </label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>
+           Wiese
+   </title>
+   <link rel="stylesheet" type="text/css" href='/css/main.css'/>
+</head>
+<body>
+   <header>
+        <span id="header">Wiese Property</span>
+   </header>
 
-    <label>Password
-    <input type="password" name="password">
-    </label>
+    <div id="login">
+        <form action="/login/" method="POST">
+            <fieldset>
+                <legend>Sign In</legend>
+                    <label>UserName
+                    <input type="text" name="username">
+                    </label><br>
 
-    <input type="submit" value="login">
-</form>
+                    <label>Password
+                    <input type="password" name="password">
+                    </label><br>
+
+                    <input type="submit" value="login">
+            </fieldset>
+        </form>
+        <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
+    </div>
+
+    <div id="createUser" class="content">
+        <h3>Register</h3>
+        <form action="/createUser" method="POST">
+            <fieldset>
+                <legend>Contact Information</legend>
+                <input id="manager" type="radio" name="user_type" value="m">
+                <label for="manager">Manager</label>
+
+                <input id="renter" type="radio" name="user_type" value="r" checked>
+                <label for="renter">Renter</label><br>
+
+                <div id="buildingListContainer">
+                <label>Building</label><br>
+                 <select name = "rental" id="buildingList">
+                 </select><br>
+                </div>
+
+                <label>Name
+                    <input type="text" name="name">
+                </label><br>
+
+                <label>UserName
+                    <input type="text" name="username">
+                </label><br>
+
+                <label>Password
+                    <input type="password" name="password">
+                </label><br>
+
+                <input type="submit" value="save">
+            </fieldset>
+        </form>
+    </div>
+   </body>
+
+<script type="text/javascript" src='/js/login.js'></script>
+</html>

@@ -1,6 +1,3 @@
-//buildings = [{"name":"building X"}, {"name":"building Y"}, {"name":"building Z"}];
-//TO DO
-//registration.html duplicate of login with radio buttons to choose renter or manager
 
 function buildingListener() {
     console.log(this.responseText);
@@ -37,13 +34,9 @@ function renterGetBuildings(){
 function maintenanceListener() {
     console.log(this.responseText);
     window.maintenances = JSON.parse(this.responseText);
-    //for (i = 0; i < maintenances.length; i++) {
-    //    console.log(maintenances[i].maintenance_request)
-    //}
     showOwnerView();
 }
-//I made this into a function so that I could call it to refresh the data in owner view.
-// Now it is not showing the data at all in owner view
+
 function getMaintenance() {
     mReq = new XMLHttpRequest();
     mReq.onload = maintenanceListener;
@@ -63,7 +56,7 @@ function welcomeButtons() {
 }
 
 function hideContent(){
-    var elements = document.getElementsByClassName("content")
+    var elements = document.getElementsByClassName("content");
     for(var i = 0; i<elements.length; i++){
         elements[i].style.display = "none";
     }
@@ -76,6 +69,7 @@ document.getElementById("ownerButton").addEventListener("click", getBuildings);
 document.getElementById("owner_maintenance_add").addEventListener("click", addMaintenanceRequest);
 document.getElementById("owner_property_add").addEventListener("click", addProperty);
 document.getElementById("all_maintenance_requests").addEventListener("click", allMaintenanceRequests);
+
 
 // hides welcome buttons and shows renter view
 function showRenterView() {
@@ -149,7 +143,6 @@ function showOwnerView() {
 
 function addMaintenanceRequest() {
     hideContent();
-
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
     // Get drop down list for building list
@@ -164,9 +157,9 @@ function addMaintenanceRequest() {
         option.setAttribute('value', buildings[i].id);
         //add the option to the list
         bl.appendChild(option);
-
     }
 }
+
 function editMaintenanceRequest(id){
     console.log(id);
     for (i=0; i<window.maintenances.length; i++){
@@ -385,11 +378,4 @@ function buildingMaintReq(e){
 
         }
     }
-}
-
-if (window.location.hash == "#view=manager" ){
-    getBuildings();
-}
-if (window.location.hash == "#view=renter" ){
-    renterGetBuildings();
 }
