@@ -45,10 +45,7 @@ function getMaintenance() {
 window.welcome_buttons = document.getElementsByClassName("welcome_button");
 // Show welcome buttons
 function welcomeButtons() {
-    everythingElse = document.getElementsByClassName("content");
-    for (i = 0; i < everythingElse.length; i++) {
-        everythingElse[i].style.display = "none";
-    }
+    hideContent();
     for (i = 0; i < welcome_buttons.length; i++) {
         welcome_buttons[i].style.display = "block";
     }
@@ -61,9 +58,19 @@ function hideContent() {
     }
 }
 
+function viewHome(){
+        everythingElse = document.getElementsByClassName("content");
+    hideContent();
+    if (window.isManager){
+        getBuildings();
+    }else{
+        showRenterView();
+    }
+}
 // Add Event Listeners
 function init() {
-//    document.getElementById("header").addEventListener("click", welcomeButtons);
+    document.getElementById("header").addEventListener("click", viewHome);
+    //document.getElementById("header").addEventListener("click", welcomeButtons);
     document.getElementById("renterButton").addEventListener("click", showRenterView);
     document.getElementById("renter_maintenance_link").addEventListener("click", renterGetBuildings);
     document.getElementById("ownerButton").addEventListener("click", getBuildings);
@@ -77,7 +84,7 @@ function init() {
         getBuildings();
     }
     else {
-        renterGetBuildings();
+        showRenterView();
     }
 }
 document.addEventListener("DOMContentLoaded", init);

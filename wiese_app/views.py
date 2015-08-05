@@ -1,9 +1,9 @@
 # TO DO
-# -link on individual maintenance requests to edit
 # - add option of maintenance requests for "new, in progress, completed"
 # - move completed maintenance requests to archive
 # - create users with permissions
 #       - tenants only able to create maintenance requests for their buildings
+# after edit maintenance, need to reload maintenance items
 
 
 from django.views.decorators.csrf import csrf_exempt
