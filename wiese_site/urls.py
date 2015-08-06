@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     url(r'^buildings/$', views.buildings, name="buildings"),
     url(r'^maintenance/$', views.maintenance, name="maintenance"),
     url(r'^login/$', views.login_view, name="login"),
+    url(r'^createUser/$', views.createUser, name="createUser"),
 
+    ######## Old URLs ###########################
     #############################################
     url(r'^old/$', old_views.welcome, name='old_welcome'),
     url(r'^renter_view/$', old_views.renter_view, name='old_renter_view'),

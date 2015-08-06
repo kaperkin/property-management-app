@@ -9,12 +9,18 @@ function renterChange(e){
     }
 }
 function initLogin(){
+    document.getElementById("header").addEventListener("click", home);
     document.getElementById('newUser').addEventListener("click", newUser);
     document.getElementById('renter').addEventListener("change", renterChange);
     document.getElementById('manager').addEventListener("change", renterChange);
+    document.getElementById('buildingList').addEventListener("change", changeValue);
 }
 document.addEventListener("DOMContentLoaded", initLogin);
 
+function home(){
+    document.getElementById('createUser').style.display="none";
+    document.getElementById('login').style.display='block';
+}
 
 function buildingListener() {
     console.log(this.responseText);
@@ -51,5 +57,41 @@ function buildingOptions(){
             bl.appendChild(option);
         }
 }
-
 getBuildings();
+
+function changeValue(){
+    newId = document.getElementById('buildingList').value;
+    console.log(newId);
+    id = document.getElementById('id').value;
+    console.log(id);
+    id = newId;
+    console.log(id);
+}
+
+function addUser(){
+    item= {
+        "action": "save",
+        "id": document.getElementById("id").value,
+        "building": building.value,
+        "name": document.getElementById('name').value,
+        "username": document.getElementById('username').value,
+        "password": document.getElementById('password').value
+    };
+    console.log(item);
+    sendUser(item,'/createUser/');
+}
+
+function sendUser(){
+    // create new FormData.
+    // FormData holds a set of key/value pairs to send using XMLHttpRequest. It works like a form's submit button.
+    var form_data = new FormData();
+    // adds each key-value pair to the FormData
+    for (var key in item) {
+        form_data.append(key, item[key]);
+    }
+    // Create new XMLHttpRequest
+    var request = new XMLHttpRequest();
+    request.onload = home();
+    request.open("POST", url);
+    request.send(form_data);
+}

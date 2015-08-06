@@ -21,10 +21,10 @@ import json
 
 
 
-# def index(request):
-#     template = loader.get_template('/wiese_app/static/html/index.html')
-#     context = RequestContext(request)
-#     return HttpResponse(template.render(context))
+def index(request):
+    template = loader.get_template('/wiese_app/static/html/index.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
 
 @csrf_exempt
 def login_view(request):
@@ -109,3 +109,7 @@ def maintenance(request):
         }
         maintenances.append(maintenance)
     return HttpResponse(json.dumps(maintenances))
+
+def createUser():
+    if request.POST():
+        print(item)

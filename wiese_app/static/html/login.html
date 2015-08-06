@@ -32,8 +32,9 @@
 
     <div id="createUser" class="content">
         <h3>Register</h3>
-        <form action="/createUser" method="POST">
+        <form action="createUser" method="POST">
             <fieldset>
+                <input type="hidden" value="0" id="id">
                 <legend>Contact Information</legend>
                 <input id="manager" type="radio" name="user_type" value="m">
                 <label for="manager">Manager</label>
@@ -42,24 +43,25 @@
                 <label for="renter">Renter</label><br>
 
                 <div id="buildingListContainer">
-                <label>Building</label><br>
-                 <select name = "rental" id="buildingList">
-                 </select><br>
+                <label>Building
+                    <select name = "rental" id="buildingList">
+                    </select>
+                </label><br>
                 </div>
 
                 <label>Name
-                    <input type="text" name="name">
+                    <input id="name" type="text" name="name">
                 </label><br>
 
                 <label>UserName
-                    <input type="text" name="username">
+                    <input id="username" type="text" name="username">
                 </label><br>
 
                 <label>Password
-                    <input type="password" name="password">
+                    <input id="password" type="password" name="password">
                 </label><br>
 
-                <input type="submit" value="save">
+                <button onclick="addUser()" type="submit" value="save">Save</button>
             </fieldset>
         </form>
     </div>
