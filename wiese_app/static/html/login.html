@@ -25,6 +25,7 @@
                     </label><br>
 
                     <input type="submit" value="login">
+
             </fieldset>
         </form>
         <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
@@ -32,9 +33,11 @@
 
     <div id="createUser" class="content">
         <h3>Register</h3>
-        <form action="createUser" method="POST">
+        <div>
             <fieldset>
                 <input type="hidden" value="0" id="id">
+                <!-- Unused input connected to changeValue() in login.js-->
+                <!--<input type="hidden" value="0" id="BuildingId">-->
                 <legend>Contact Information</legend>
                 <input id="manager" type="radio" name="user_type" value="m">
                 <label for="manager">Manager</label>
@@ -49,8 +52,16 @@
                 </label><br>
                 </div>
 
-                <label>Name
-                    <input id="name" type="text" name="name">
+                <label>First Name
+                    <input id="first_name" type="text" name="first_name">
+                </label><br>
+
+                <label>Last Name
+                    <input id="last_name" type="text" name="last_name">
+                </label><br>
+
+                <label>Email
+                    <input id="email" type="text" name="email">
                 </label><br>
 
                 <label>UserName
@@ -61,9 +72,10 @@
                     <input id="password" type="password" name="password">
                 </label><br>
 
-                <button onclick="addUser()" type="submit" value="save">Save</button>
+                <button onclick="addUser()">Save</button>
+                <button onclick="home()">Cancel</button>
             </fieldset>
-        </form>
+        </div>
     </div>
    </body>
 

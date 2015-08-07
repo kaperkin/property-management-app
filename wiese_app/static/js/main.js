@@ -126,6 +126,10 @@ function init() {
             var buildingAddress = document.createElement("li");
             buildingAddress.innerHTML = buildings[i].address;
             blankUL.appendChild(buildingAddress);
+             // add building city
+            var buildingCity = document.createElement("li");
+            buildingCity.innerHTML = buildings[i].city;
+            blankUL.appendChild(buildingCity);
             // add building state
             var buildingState = document.createElement("li");
             buildingState.innerHTML = buildings[i].state;
@@ -284,6 +288,7 @@ function init() {
             "action": "save",
             "id": document.getElementById("id").value,
             "rental_name": document.getElementById("rental_name").value,
+            "city": document.getElementById("city").value,
             "address": document.getElementById("address").value,
             "state": document.getElementById("state").value,
             "zipcode": document.getElementById("zipcode").value,

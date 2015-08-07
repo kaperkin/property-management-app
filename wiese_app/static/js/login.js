@@ -58,22 +58,24 @@ function buildingOptions(){
         }
 }
 getBuildings();
-
-function changeValue(){
-    newId = document.getElementById('buildingList').value;
-    console.log(newId);
-    id = document.getElementById('id').value;
-    console.log(id);
-    id = newId;
-    console.log(id);
-}
+// Another way to pull out building id, then call by document.getElementById('buildingList').value
+//function changeValue(){
+//    newBuildingId = document.getElementById('buildingList').value;
+//    console.log(newBuildingId);
+//    buildingId = document.getElementById('buildingId').value;
+//    console.log(buildingId);
+//    buildingId = newBuildingId;
+//    console.log(buildingid);
+//}
 
 function addUser(){
     item= {
         "action": "save",
         "id": document.getElementById("id").value,
-        "building": building.value,
-        "name": document.getElementById('name').value,
+        "building": document.getElementById("buildingList").value,
+        "first_name": document.getElementById('first_name').value,
+        "last_name": document.getElementById('last_name').value,
+        "email": document.getElementById('email').value,
         "username": document.getElementById('username').value,
         "password": document.getElementById('password').value
     };
@@ -81,7 +83,7 @@ function addUser(){
     sendUser(item,'/createUser/');
 }
 
-function sendUser(){
+function sendUser(item, url){
     // create new FormData.
     // FormData holds a set of key/value pairs to send using XMLHttpRequest. It works like a form's submit button.
     var form_data = new FormData();
@@ -91,7 +93,7 @@ function sendUser(){
     }
     // Create new XMLHttpRequest
     var request = new XMLHttpRequest();
-    request.onload = home();
+    request.onload = home;
     request.open("POST", url);
     request.send(form_data);
 }

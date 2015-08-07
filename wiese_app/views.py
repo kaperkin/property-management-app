@@ -61,6 +61,7 @@ def buildings(request):
         else:
             rental.rental_name = request.POST["rental_name"]
             rental.address = request.POST["address"]
+            rental.city = request.POST["city"]
             rental.state = request.POST["state"]
             rental.zipcode = request.POST["zipcode"]
 
@@ -72,6 +73,7 @@ def buildings(request):
             "rental_name": rental.rental_name,
             "id": rental.id,
             "address": rental.address,
+            "city": rental.city,
             "state": rental.state,
             "zipcode": rental.zipcode}
         buildings.append(building)
@@ -110,6 +112,22 @@ def maintenance(request):
         maintenances.append(maintenance)
     return HttpResponse(json.dumps(maintenances))
 
-def createUser():
-    if request.POST():
-        print(item)
+@csrf_exempt
+def createUser(request):
+    if request.POST:
+        print(request.POST)
+        user = User()
+        user.id = request.POST["id"]
+        user.first_name = request.POST["first_name"]
+        user.last_name = request.POST["last_name"]
+        user.email = request.POST["email"]
+        user.username = request.POST["username"]
+        user.set_password(request.POST["password"])
+        user.save()
+        renter = Renter()
+        renter.user = user
+        renter.building = Rentals.objects.filter(id=request.POST["building"])[0]
+        renter.save()
+        return HttpResponse(str(renter.id))
+
+

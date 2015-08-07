@@ -2,11 +2,6 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
-class Manager(models.Model):
-    user = models.ForeignKey(User)
-
-class Renter(models.Model):
-    user = models.ForeignKey(User)
 
 
 
@@ -20,6 +15,10 @@ class Rentals(models.Model):
     def __str__(self):
         return self.rental_name
 
+class Renter(models.Model):
+    user = models.ForeignKey(User)
+    building = models.ForeignKey(Rentals)
+
 class Maintenance(models.Model):
     rental = models.ForeignKey(Rentals)
     renter = models.ForeignKey(Renter)
@@ -30,3 +29,6 @@ class Maintenance(models.Model):
 
     def __str__(self):
         return str(self.maintenance_date) + " "  + self.rental.rental_name
+
+class Manager(models.Model):
+    user = models.ForeignKey(User)
