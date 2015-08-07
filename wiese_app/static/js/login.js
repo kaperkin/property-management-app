@@ -3,7 +3,7 @@ function initLogin(){
     document.getElementById("ownerButton").addEventListener("click", setUserType);
     document.getElementById("header").addEventListener("click", home);
     document.getElementById('newUser').addEventListener("click", newUser);
-    document.getElementById('renter').addEventListener("change", renterChange);
+    //document.getElementById('renter').addEventListener("change", renterChange);
     document.getElementById('manager').addEventListener("change", renterChange);
     //document.getElementById('buildingList').addEventListener("change", changeValue);
 }
@@ -95,6 +95,7 @@ function addUser(){
     item= {
         "action": "save",
         "id": document.getElementById("id").value,
+        "userType": document.getElementById("userType").value,
         "building": document.getElementById("buildingList").value,
         "first_name": document.getElementById('first_name').value,
         "last_name": document.getElementById('last_name').value,

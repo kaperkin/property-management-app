@@ -169,20 +169,16 @@ function init() {
         element.style.display = "block";
         // Get drop down list for building list
         var bl = document.getElementById("buildingList");
-        if (isManager) {
-            bl.style.display = "none";
-        } else {
-            //create for loop to add to list using buildings obtained with oreq variable
-            for (i = 0; i < buildings.length; i++) {
-                //create a new option
-                var option = document.createElement("option");
-                // make the option have the name of the building
-                option.innerHTML = buildings[i].rental_name;
-                // set the attribute 'value' of the option to be the id of the building
-                option.setAttribute('value', buildings[i].id);
-                //add the option to the list
-                bl.appendChild(option);
-            }
+        //create for loop to add to list using buildings obtained with oreq variable
+        for (i = 0; i < buildings.length; i++) {
+            //create a new option
+            var option = document.createElement("option");
+            // make the option have the name of the building
+            option.innerHTML = buildings[i].rental_name;
+            // set the attribute 'value' of the option to be the id of the building
+            option.setAttribute('value', buildings[i].id);
+            //add the option to the list
+            bl.appendChild(option);
         }
     }
 
@@ -194,6 +190,10 @@ function init() {
                 mainReq = m;
                 break;
             }
+        }
+        if (isManager ) {
+            var bl = document.getElementById("buildingList");
+            bl.style.display = "none";
         }
         addMaintenanceRequest();
         document.getElementById("mainId").value = mainReq.mainId;

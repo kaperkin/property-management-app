@@ -124,10 +124,15 @@ def createUser(request):
         user.username = request.POST["username"]
         user.set_password(request.POST["password"])
         user.save()
-        renter = Renter()
-        renter.user = user
-        renter.building = Rentals.objects.filter(id=request.POST["building"])[0]
-        renter.save()
-        return HttpResponse(str(renter.id))
+        if request.POST["userType"] == "renter":
+            renter = Renter()
+            renter.user = user
+            renter.building = Rentals.objects.filter(id=request.POST["building"])[0]
+            renter.save()
+        else:
+            manager = Manager()
+            manager.user = user
+            manager.save()
+        return HttpResponse("success!")
 
 
