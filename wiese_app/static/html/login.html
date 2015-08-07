@@ -12,7 +12,15 @@
         <span id="header">Wiese Property</span>
    </header>
 
-    <div id="login">
+    <!-- welcome view -->
+   <div class="wrapper content">
+        <!--show renter view, hide all else -->
+         <button class="welcome_button" id="renterButton" >Renter</button>
+        <!--show owner view(old index) hide all else -->
+         <button class="welcome_button" id="ownerButton"  >Manager</button></a>
+   </div>
+
+    <div id="login" class="content">
         <form action="/login/" method="POST">
             <fieldset>
                 <legend>Sign In</legend>
@@ -36,14 +44,15 @@
         <div>
             <fieldset>
                 <input type="hidden" value="0" id="id">
+                <input type="hidden" value="" id="userType"
                 <!-- Unused input connected to changeValue() in login.js-->
                 <!--<input type="hidden" value="0" id="BuildingId">-->
                 <legend>Contact Information</legend>
-                <input id="manager" type="radio" name="user_type" value="m">
+                <!--<input id="manager" type="radio" name="user_type" value="m">
                 <label for="manager">Manager</label>
 
                 <input id="renter" type="radio" name="user_type" value="r" checked>
-                <label for="renter">Renter</label><br>
+                <label for="renter">Renter</label><br>-->
 
                 <div id="buildingListContainer">
                 <label>Building

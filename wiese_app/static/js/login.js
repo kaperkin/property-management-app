@@ -1,4 +1,14 @@
-// Move to login.js file
+function initLogin(){
+    document.getElementById("renterButton").addEventListener("click", setUserType);
+    document.getElementById("ownerButton").addEventListener("click", setUserType);
+    document.getElementById("header").addEventListener("click", home);
+    document.getElementById('newUser').addEventListener("click", newUser);
+    document.getElementById('renter').addEventListener("change", renterChange);
+    document.getElementById('manager').addEventListener("change", renterChange);
+    //document.getElementById('buildingList').addEventListener("change", changeValue);
+}
+document.addEventListener("DOMContentLoaded", initLogin);
+
 function renterChange(e){
     var renter = document.getElementById('renter');
     var list = document.getElementById('buildingListContainer');
@@ -8,15 +18,24 @@ function renterChange(e){
         list.style.display = 'none';
     }
 }
-function initLogin(){
-    document.getElementById("header").addEventListener("click", home);
-    document.getElementById('newUser').addEventListener("click", newUser);
-    document.getElementById('renter').addEventListener("change", renterChange);
-    document.getElementById('manager').addEventListener("change", renterChange);
-    document.getElementById('buildingList').addEventListener("change", changeValue);
-}
-document.addEventListener("DOMContentLoaded", initLogin);
 
+function setUserType(){
+    if(this.getAttribute('id')=='renterButton'){
+        //return renter login/reg
+        window.userType = document.getElementById('userType').value = "renter";
+    }else{
+        //return manager login/reg
+        window.userType = document.getElementById('userType').value = "manager";
+    }
+    var welcome = document.getElementsByClassName("welcome_button");
+    for (var i = 0; i<welcome.length; i++){
+        welcome[i].style.display = "none";
+    }
+    home();
+   //make renter checked or add hash? then direct to proper login and registration
+
+
+}
 function home(){
     document.getElementById('createUser').style.display="none";
     document.getElementById('login').style.display='block';
@@ -40,6 +59,10 @@ function getBuildings(){
 
 function newUser(){
     document.getElementById('login').style.display='none';
+    if (userType=="manager"){
+        var bl = document.getElementById('buildingListContainer');
+        bl.style.display="none";
+    }
     document.getElementById('createUser').style.display="block";
 }
 
