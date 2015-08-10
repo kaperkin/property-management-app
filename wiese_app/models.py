@@ -21,7 +21,7 @@ class Renter(models.Model):
 
 class Maintenance(models.Model):
     rental = models.ForeignKey(Rentals)
-    renter = models.ForeignKey(Renter)
+    user = models.ForeignKey(User)
     maintenance_rental = models.CharField(max_length = 200)
     maintenance_author = models.CharField(max_length = 200)
     maintenance_request = models.TextField()

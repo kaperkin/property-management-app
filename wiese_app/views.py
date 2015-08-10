@@ -11,7 +11,7 @@ from django.template import RequestContext, loader
 from .models import Rentals, Maintenance, Manager, Renter
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
@@ -25,6 +25,13 @@ def index(request):
     template = loader.get_template('/wiese_app/static/html/index.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
+
+@csrf_exempt
+def logged_in(request):
+    id = 0
+    if request.user.is_authenticated():
+        id = request.user.id
+    return HttpResponse(str(id))
 
 @csrf_exempt
 def login_view(request):
@@ -46,7 +53,10 @@ def login_view(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
-
+@csrf_exempt
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/login.html")
 
 @csrf_exempt
 def buildings(request):
@@ -94,6 +104,7 @@ def maintenance(request):
             m.maintenance_rental = request.POST["maintenance_rental"]
             m.maintenance_author = request.POST["maintenance_author"]
             m.maintenance_request = request.POST["maintenance_request"]
+            m.user = request.user
 
             m.save()
 

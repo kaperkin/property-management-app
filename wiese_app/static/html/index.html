@@ -10,6 +10,7 @@
 <body>
    <header>
         <span id="header">Wiese Property</span>
+       <button id="logout">Logout</button>
    </header>
 <div id="content">
     <!-- welcome view -->
@@ -49,16 +50,22 @@
 
     <!--update maintenance, add maintenance request -->
     <div  class="content" id="maintenanceRequest" method="POST">
-        <input type="hidden" value="0" id="mainId">
+            <input type="hidden" value="0" id="mainId">
         <label>Building</label><br>
-        <select name = "rental" id="buildingList">
-        </select><span id="buildingName"></span><br>
+            <select name = "rental" id="buildingList">
+            </select><span id="buildingName"></span><br>
         <label>Unit Number</label><br>
-        <input name = "maintenance_rental" id="maintenance_rental"><br>
-    <label>Tenant Name</label><br>
-        <input name = "maintenance_author" id="maintenance_author"><br>
-    <label>Maintenance Request</label><br>
-        <input name = "maintenance_request" id="maintenance_request"><br>
+            <input name = "maintenance_rental" id="maintenance_rental"><br>
+        <label>Tenant Name</label><br>
+            <input name = "maintenance_author" id="maintenance_author"><br>
+        <label>Maintenance Request</label><br>
+             <input name = "maintenance_request" id="maintenance_request"><br>
+      <!--  <div id="status">
+            <input type="radio" name="status" value="new" checked/>New
+            <input type="radio" name="status" value="inProgress"/>In Progress
+            <input type="radio" name="status" value="completed"/>Completed<br>
+        </div> -->
+
 
         <button onclick="sendMaintenanceRequest()" value = "SAVE">Save Changes</button>
     </div>
