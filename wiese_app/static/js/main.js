@@ -18,7 +18,7 @@ function init() {
     document.getElementById("logout").addEventListener("click", logout);
 
     isManager = window.location.hash == "#view=manager";
-    //isRenter = window.location.hash == "#view=renter";
+    isRenter = window.location.hash == "#view=renter";
     console.log(window.location.hash);
     // viewHome();
     viewHome();
@@ -183,6 +183,7 @@ function addMaintenanceRequest() {
     hideContent();
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
+    var statusDiv = document.getElementById("statusDiv");
     // Get drop down list for building list
     var bl = document.getElementById("buildingList");
     //create for loop to add to list using buildings obtained with oreq variable
@@ -192,6 +193,8 @@ function addMaintenanceRequest() {
             bl.style.display = "none";
             bn = document.getElementById("buildingName");
             bn.innerHTML = buildings[i].rental_name;
+            statusDiv.style.display = "none";
+
         }
     }
 
@@ -317,10 +320,15 @@ function buildingMaintReq(e) {
 }
 
 function sendMaintenanceRequest() {
-    //var progress = document.getElementsByName("status");
-    //for(var i=0; i>progress.length; i++){
-    //  console.log(progress[i].value);
-    //};
+    //find which radio button is checked
+    var statusDiv = document.getElementById("statusDiv");
+    var radios = statusDiv.getElementsByTagName("input");
+    for (var i = 0; i<radios.length; i++) {
+        if (radios[i].checked){
+            console.log(radios[i].value)
+            }
+        }
+
     // creates a dictionary to hold the information on the form
     var item = {
         "action": "SAVE",
@@ -330,6 +338,9 @@ function sendMaintenanceRequest() {
         "maintenance_author": document.getElementById("maintenance_author").value,
         "maintenance_request": document.getElementById("maintenance_request").value,
     };
+    if(isRenter){
+        item["building_id"] = user.building_id;
+    }
     // calls the sendPost function with the dictionary created and an url
     sendPost(item, "/maintenance/");
     document.getElementById("buildingList").innerHTML = "";
@@ -444,7 +455,4 @@ function sendDelete(id) {
 
 function logout(){
     window.location="/logout_view/";
-    //l = new XMLHttpRequest();
-    //l.open("POST", "/logout_view/");
-    //l.send()
 }
