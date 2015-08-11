@@ -28,10 +28,19 @@ def index(request):
 
 @csrf_exempt
 def logged_in(request):
-    id = 0
+    output = {"user_id": 0}
     if request.user.is_authenticated():
-        id = request.user.id
-    return HttpResponse(str(id))
+        output["user_id"] = request.user.id
+        renterList = Renter.objects.filter(user = request.user)
+        managerList = Manager.objects.filter(user = request.user)
+        if (len(renterList) > 0):
+            renter = renterList[0]
+            output["building_id"] = renter.building.id
+            output["renter_id"] = renter.id
+        if (len(managerList) > 0):
+            manager = managerList[0]
+            output["manager_id"] = manager.id
+    return HttpResponse(json.dumps(output))
 
 @csrf_exempt
 def login_view(request):
@@ -128,7 +137,7 @@ def createUser(request):
     if request.POST:
         print(request.POST)
         user = User()
-        user.id = request.POST["id"]
+        # user.id = request.POST["id"]
         user.first_name = request.POST["first_name"]
         user.last_name = request.POST["last_name"]
         user.email = request.POST["email"]
@@ -140,10 +149,13 @@ def createUser(request):
             renter.user = user
             renter.building = Rentals.objects.filter(id=request.POST["building"])[0]
             renter.save()
+            return HttpResponse("renter: "+ str(renter.id) + ", user: " + str(user.id))
         else:
             manager = Manager()
             manager.user = user
             manager.save()
-        return HttpResponse("success!")
+            return HttpResponse("manager: "+ str(manager.id) + ", user: " + str(user.id))
+    else:
+        return HttpResponse("no success!")
 
 

@@ -4,7 +4,7 @@ function initLogin(){
     document.getElementById("header").addEventListener("click", home);
     document.getElementById('newUser').addEventListener("click", newUser);
     //document.getElementById('renter').addEventListener("change", renterChange);
-    document.getElementById('manager').addEventListener("change", renterChange);
+    //document.getElementById('manager').addEventListener("change", renterChange);
     //document.getElementById('buildingList').addEventListener("change", changeValue);
 }
 document.addEventListener("DOMContentLoaded", initLogin);

@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", init);
 
 function userListener() {
     console.log(this.responseText);
-    var user_id = this.responseText;
-    if (user_id == "0"){
+    window.user = JSON.parse(this.responseText);
+    if (user.user_id == "0"){
         window.location = "/login.html";
     }
 }
@@ -187,14 +187,25 @@ function addMaintenanceRequest() {
     var bl = document.getElementById("buildingList");
     //create for loop to add to list using buildings obtained with oreq variable
     for (i = 0; i < buildings.length; i++) {
-        //create a new option
-        var option = document.createElement("option");
-        // make the option have the name of the building
-        option.innerHTML = buildings[i].rental_name;
-        // set the attribute 'value' of the option to be the id of the building
-        option.setAttribute('value', buildings[i].id);
-        //add the option to the list
-        bl.appendChild(option);
+        console.log(buildings[i].id);
+        if (buildings[i].id == user.building_id) {
+            bl.style.display = "none";
+            bn = document.getElementById("buildingName");
+            bn.innerHTML = buildings[i].rental_name;
+        }
+    }
+
+    if (!user.building_id) {
+        for (i = 0; i < buildings.length; i++) {
+            //create a new option
+            var option = document.createElement("option");
+            // make the option have the name of the building
+            option.innerHTML = buildings[i].rental_name;
+            // set the attribute 'value' of the option to be the id of the building
+            option.setAttribute('value', buildings[i].id);
+            //add the option to the list
+            bl.appendChild(option);
+        }
     }
 }
 
