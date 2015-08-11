@@ -83,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/wiese_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -104,8 +104,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wiese_app/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.14084508">
-              <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.693662">
+              <caret line="219" column="17" selection-start-line="219" selection-start-column="17" selection-end-line="219" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="n#!!block;n#init#0" expanded="false" />
@@ -121,11 +121,9 @@
                 <element signature="n#!!block;n#viewHome#0" expanded="false" />
                 <element signature="n#!!block;n#showRenterView#0" expanded="false" />
                 <element signature="n#!!block;n#showOwnerView#0" expanded="false" />
-                <element signature="n#!!block;n#addMaintenanceRequest#0" expanded="false" />
                 <element signature="n#!!block;n#editMaintenanceRequest#0" expanded="false" />
                 <element signature="n#!!block;n#allMaintenanceRequests#0" expanded="false" />
                 <element signature="n#!!block;n#buildingMaintReq#0" expanded="false" />
-                <element signature="n#!!block;n#sendMaintenanceRequest#0" expanded="false" />
                 <element signature="n#!!block;n#deleteMaintenanceRequest#0" expanded="false" />
                 <element signature="n#!!block;n#addProperty#0" expanded="false" />
                 <element signature="n#!!block;n#editProperty#0" expanded="false" />
@@ -168,7 +166,7 @@
         <entry file="file://$PROJECT_DIR$/wiese_app/static/html/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.296296">
-              <caret line="64" column="72" selection-start-line="64" selection-start-column="72" selection-end-line="64" selection-end-column="72" />
+              <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -218,11 +216,11 @@
         <option value="$PROJECT_DIR$/wiese_app/admin.py" />
         <option value="$PROJECT_DIR$/wiese_app/migrations/0004_auto_20150803_1546.py" />
         <option value="$PROJECT_DIR$/wiese_app/static/html/login.html" />
-        <option value="$PROJECT_DIR$/wiese_app/models.py" />
         <option value="$PROJECT_DIR$/wiese_site/urls.py" />
         <option value="$PROJECT_DIR$/wiese_app/static/js/login.js" />
         <option value="$PROJECT_DIR$/wiese_app/views.py" />
         <option value="$PROJECT_DIR$/wiese_app/static/html/index.html" />
+        <option value="$PROJECT_DIR$/wiese_app/models.py" />
         <option value="$PROJECT_DIR$/wiese_app/static/js/main.js" />
       </list>
     </option>
@@ -736,11 +734,9 @@
             <element signature="n#!!block;n#viewHome#0" expanded="false" />
             <element signature="n#!!block;n#showRenterView#0" expanded="false" />
             <element signature="n#!!block;n#showOwnerView#0" expanded="false" />
-            <element signature="n#!!block;n#addMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#editMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#allMaintenanceRequests#0" expanded="false" />
             <element signature="n#!!block;n#buildingMaintReq#0" expanded="false" />
-            <element signature="n#!!block;n#sendMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#deleteMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#addProperty#0" expanded="false" />
             <element signature="n#!!block;n#editProperty#0" expanded="false" />
@@ -829,11 +825,9 @@
             <element signature="n#!!block;n#viewHome#0" expanded="false" />
             <element signature="n#!!block;n#showRenterView#0" expanded="false" />
             <element signature="n#!!block;n#showOwnerView#0" expanded="false" />
-            <element signature="n#!!block;n#addMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#editMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#allMaintenanceRequests#0" expanded="false" />
             <element signature="n#!!block;n#buildingMaintReq#0" expanded="false" />
-            <element signature="n#!!block;n#sendMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#deleteMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#addProperty#0" expanded="false" />
             <element signature="n#!!block;n#editProperty#0" expanded="false" />
@@ -1117,16 +1111,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wiese_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wiese_app/static/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1164,14 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wiese_app/static/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.296296">
-          <caret line="64" column="72" selection-start-line="64" selection-start-column="72" selection-end-line="64" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wiese_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1184,10 +1160,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wiese_app/static/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.296296">
+          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiese_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wiese_app/static/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14084508">
-          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.693662">
+          <caret line="219" column="17" selection-start-line="219" selection-start-column="17" selection-end-line="219" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#init#0" expanded="false" />
@@ -1203,11 +1197,9 @@
             <element signature="n#!!block;n#viewHome#0" expanded="false" />
             <element signature="n#!!block;n#showRenterView#0" expanded="false" />
             <element signature="n#!!block;n#showOwnerView#0" expanded="false" />
-            <element signature="n#!!block;n#addMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#editMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#allMaintenanceRequests#0" expanded="false" />
             <element signature="n#!!block;n#buildingMaintReq#0" expanded="false" />
-            <element signature="n#!!block;n#sendMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#deleteMaintenanceRequest#0" expanded="false" />
             <element signature="n#!!block;n#addProperty#0" expanded="false" />
             <element signature="n#!!block;n#editProperty#0" expanded="false" />

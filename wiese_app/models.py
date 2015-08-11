@@ -26,9 +26,13 @@ class Maintenance(models.Model):
     maintenance_author = models.CharField(max_length = 200)
     maintenance_request = models.TextField()
     maintenance_date = models.DateField(auto_now = True)
+    status = models.ForeignKey(Status)
 
     def __str__(self):
         return str(self.maintenance_date) + " "  + self.rental.rental_name
 
 class Manager(models.Model):
     user = models.ForeignKey(User)
+
+class Status(models.Model):
+    name = models.CharField(max_length = 20)

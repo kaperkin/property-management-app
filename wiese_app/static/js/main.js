@@ -1,7 +1,5 @@
 // ToDo
 // Create model for status of request
-//      radio button for status, get value out?
-// if user has building list, make building list to that user building id
 // document workflow model
 
 ////// init function to kick it all off //////////////////////
@@ -186,8 +184,28 @@ function addMaintenanceRequest() {
     var statusDiv = document.getElementById("statusDiv");
     // Get drop down list for building list
     var bl = document.getElementById("buildingList");
+    //create radio buttons for status
+    var status =[
+        {   "id": 2,
+            "name": "new"
+        },
+        {
+          "id": 4,
+            "name": "in progress"
+        }];
+    for (var i=0; i< status.length; i++){
+        var label = document.createElement("label");
+        r = document.createElement("input");
+        r.setAttribute('type', 'radio');
+        r.setAttribute('name', 'status');
+        r.value = status[i].id;
+        label.innerHTML=status[i].name;
+        label.appendChild(r);
+        statusDiv.appendChild(label);
+    }
+
     //create for loop to add to list using buildings obtained with oreq variable
-    for (i = 0; i < buildings.length; i++) {
+    for (var i = 0; i < buildings.length; i++) {
         console.log(buildings[i].id);
         if (buildings[i].id == user.building_id) {
             bl.style.display = "none";
@@ -199,7 +217,7 @@ function addMaintenanceRequest() {
     }
 
     if (!user.building_id) {
-        for (i = 0; i < buildings.length; i++) {
+        for (var i = 0; i < buildings.length; i++) {
             //create a new option
             var option = document.createElement("option");
             // make the option have the name of the building
@@ -323,9 +341,10 @@ function sendMaintenanceRequest() {
     //find which radio button is checked
     var statusDiv = document.getElementById("statusDiv");
     var radios = statusDiv.getElementsByTagName("input");
+    var maintenance_status = "";
     for (var i = 0; i<radios.length; i++) {
         if (radios[i].checked){
-            console.log(radios[i].value)
+            maintenance_status = radios[i].value
             }
         }
 
