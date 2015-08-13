@@ -1,7 +1,7 @@
 // ToDo
 // document workflow model
 // add image upload?
-//allow renters to access their reqeusts?
+//allow renters to access their requests?
 
 ////// init function to kick it all off //////////////////////
 /////////////////////////////////////////////////////////
@@ -296,33 +296,34 @@ function allMaintenanceRequests() {
     for (var i = 0; i < maintenances.length; i++) {
         console.log(maintenances[i]);
         var text = document.getElementById("showAllMaintenance");
+
         // add building name
         var buildingName = document.createElement("li");
         buildingName.innerHTML = maintenances[i].rental;
         text.appendChild(buildingName);
         // add blank ul
         var blankUL = document.createElement("ul");
-        text.appendChild(blankUL);
+        buildingName.appendChild(blankUL);
         //add unit number if it exists
         if (maintenances[i].maintenance_rental != "") {
             unit = document.createElement("li");
-            unit.innerHTML = maintenances[i].maintenance_rental;
+            unit.innerHTML = "<b>Unit: </b>" + maintenances[i].maintenance_rental;
             blankUL.appendChild(unit);
         }
         // add maintenance author
         var maintenanceAuthor = document.createElement("li");
-        maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
-        blankUL.appendChild(maintenanceAuthor);
+        maintenanceAuthor.innerHTML = "<b>Requested By: </b>" + maintenances[i].maintenance_author;
+       blankUL.appendChild(maintenanceAuthor);
         // add maintenance request
         var maintenanceRequest = document.createElement("li");
-        maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
+        maintenanceRequest.innerHTML = "<b>Request: </b>" + maintenances[i].maintenance_request;
         blankUL.appendChild(maintenanceRequest);
         // add maintenance status
         var maintenanceStatus = document.createElement("li");
         //create radio button for status
         for (var rb=0; rb<statusList.length; rb++){
             if (statusList[rb].name == maintenances[i].maintenance_status){
-               maintenanceStatus.innerHTML= "Status: "+statusList[rb].name;
+               maintenanceStatus.innerHTML= "<b>Status: </b>" + statusList[rb].name;
                 break;
             }
         }
@@ -358,23 +359,23 @@ function buildingMaintReq(e) {
             //add unit number if it exists
             if (maintenances[i].maintenance_rental != "") {
                 unit = document.createElement("li");
-                unit.innerHTML = maintenances[i].maintenance_rental;
+                unit.innerHTML = "<b>Unit: </b>" +maintenances[i].maintenance_rental;
                 blankUL.appendChild(unit);
             }
             // add maintenance author
             var maintenanceAuthor = document.createElement("li");
-            maintenanceAuthor.innerHTML = maintenances[i].maintenance_author;
+            maintenanceAuthor.innerHTML = "<b>Requested By: </b>" + maintenances[i].maintenance_author;
             blankUL.appendChild(maintenanceAuthor);
             // add maintenance request
             var maintenanceRequest = document.createElement("li");
-            maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
+            maintenanceRequest.innerHTML = "<b>Request: </b>" +maintenances[i].maintenance_request;
             blankUL.appendChild(maintenanceRequest);
             // add maintenance status
             var maintenanceStatus = document.createElement("li");
             //create radio button for status
             for (var rb=0; rb<statusList.length; rb++){
                 if (statusList[rb].name == maintenances[i].maintenance_status){
-                   maintenanceStatus.innerHTML= "Status: " + statusList[rb].name;
+                   maintenanceStatus.innerHTML= "<b>Status: </b>" + statusList[rb].name;
                     break;
                 }
             }
@@ -446,10 +447,14 @@ function deleteMaintenanceRequest(id) {
 
 function addProperty() {
     hideContent();
-
+    document.getElementById("id").value = "0";
+    document.getElementById("rental_name").value = "";
+    document.getElementById("address").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("state").value = "";
+    document.getElementById("zipcode").value = "";
     var element = document.getElementById("updateAddBuilding");
     element.style.display = "block";
-    document.getElementById("id").value = "0";
 }
 
 function editProperty(id) {
@@ -465,6 +470,7 @@ function editProperty(id) {
     document.getElementById("id").value = building.id;
     document.getElementById("rental_name").value = building.rental_name;
     document.getElementById("address").value = building.address;
+    document.getElementById("city").value = building.city;
     document.getElementById("state").value = building.state;
     document.getElementById("zipcode").value = building.zipcode;
 }

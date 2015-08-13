@@ -37,3 +37,7 @@ input {
     font-size: large;
     color: #243949;
 }
+
+#delete{
+    background-color: tomato;
+}

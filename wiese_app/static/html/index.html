@@ -37,8 +37,8 @@
     <ul id="maintenanceDetail">
    </ul>
 
-    <div class="content" id="showAllMaintenance">
-    </div>
+    <ul class="content" id="showAllMaintenance">
+    </ul>
 
     <h1>Building Details</h1>
     <ul id="buildingDetail">
@@ -63,9 +63,8 @@
       <div id="statusDiv">
 
       </div>
-
-
         <button onclick="sendMaintenanceRequest()" value = "SAVE">Save Changes</button>
+        <button onclick="viewHome()">Cancel</button>
     </div>
 
     <!-- update building, add new property -->
@@ -82,7 +81,8 @@
         <label>Zipcode</label><br>
         <input name = "zipcode" id="zipcode"><br>
     <button onclick="sendBuildingUpdate()" value = "SAVE" name="action">Save Changes</button>
-    <button onclick="deleteBuilding()" value="DELETE" name="action">Delete Property</button>
+    <button onclick="viewHome()">Cancel</button><br>
+    <button onclick="deleteBuilding()" value="DELETE" name="action" id="delete">Delete Property</button>
     </div>
 
     </div>
