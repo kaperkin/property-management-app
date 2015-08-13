@@ -1,6 +1,7 @@
 // ToDo
-// after save update, new maint request defaults to previous update info
 // document workflow model
+// add image upload?
+//allow renters to access their reqeusts?
 
 ////// init function to kick it all off //////////////////////
 /////////////////////////////////////////////////////////
@@ -198,16 +199,13 @@ function addMaintenanceRequest() {
     hideContent();
     document.getElementById("statusDiv").innerHTML="";
     document.getElementById("mainId").innerHTML="";
-    document.getElementById("buildingName").style.display ="none";
-    document.getElementById("buildingList").innerHTML = "";
     document.getElementById("maintenance_rental").value = "";
     document.getElementById("maintenance_author").value= "";
     document.getElementById("maintenance_request").value = "";
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
     var statusDiv = document.getElementById("statusDiv");
-    // Get drop down list for building list
-    var bl = document.getElementById("buildingList");
+
     //create radio buttons for status
     for (var i=0; i<statusList.length; i++){
         var r = document.createElement("input");
@@ -221,26 +219,38 @@ function addMaintenanceRequest() {
         statusDiv.appendChild(r);
         statusDiv.appendChild(label);
     }
+
+    // Get drop down list for building list
+    var bl = document.getElementById("buildingList");
     //create for loop to add to list using buildings obtained with oreq variable
     for (var b = 0; b < buildings.length; b++) {
         console.log(buildings[b].id);
         if (buildings[b].id == user.building_id) {
             bl.style.display = "none";
+            bl.value= buildings[b].id;
             bn = document.getElementById("buildingName");
             bn.innerHTML = buildings[b].rental_name;
             statusDiv.style.display = "none";
+            var radioBtns = statusDiv.getElementsByClassName('radio');
+            for(var p=0; p<radioBtns.length; p++){
+                if (radioBtns[p].id == "1"){
+                    radioBtns[p].defaultChecked= true;
+                    break;
+                 }
+            }
+            break;
         }
     }
 
     if (!user.building_id) {
-        for (var i = 0; i < buildings.length; i++) {
+        for (var q = 0; q < buildings.length; q++) {
             //create a new option
             var option = document.createElement("option");
             // make the option have the name of the building
-            option.innerHTML = buildings[i].rental_name;
+            option.innerHTML = buildings[q].rental_name;
             // set the attribute 'value' of the option to be the id of the building
-            option.setAttribute('value', buildings[i].id);
-            //add the option to the list
+            option.setAttribute('value', buildings[q].id);
+            //add option with value to buildingList item
             bl.appendChild(option);
         }
     }
