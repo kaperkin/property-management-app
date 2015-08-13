@@ -1,7 +1,7 @@
 function initLogin(){
     document.getElementById("renterButton").addEventListener("click", setUserType);
     document.getElementById("ownerButton").addEventListener("click", setUserType);
-    document.getElementById("header").addEventListener("click", home);
+    document.getElementById("header").addEventListener("click", welcomeButton);
     document.getElementById('newUser').addEventListener("click", newUser);
     //document.getElementById('renter').addEventListener("change", renterChange);
     //document.getElementById('manager').addEventListener("change", renterChange);
@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", initLogin);
 //    }
 //}
 
+function welcomeButton(){
+    document.getElementById('createUser').style.display="none";
+    document.getElementById('login').style.display='none';
+    document.getElementById('renterButton').style.display='block';
+    document.getElementById('ownerButton').style.display='block';
+}
+
 function setUserType(){
     if(this.getAttribute('id')=='renterButton'){
         //return renter login/reg
@@ -33,9 +40,8 @@ function setUserType(){
     }
     home();
    //make renter checked or add hash? then direct to proper login and registration
-
-
 }
+
 function home(){
     document.getElementById('createUser').style.display="none";
     document.getElementById('login').style.display='block';
@@ -55,15 +61,6 @@ function getBuildings(){
     oReq.onload = buildingListener;
     oReq.open("get", "/buildings/", true);
     oReq.send();
-}
-
-function newUser(){
-    document.getElementById('login').style.display='none';
-    if (userType=="manager"){
-        var bl = document.getElementById('buildingListContainer');
-        bl.style.display="none";
-    }
-    document.getElementById('createUser').style.display="block";
 }
 
 function buildingOptions(){
@@ -90,6 +87,15 @@ getBuildings();
 //    buildingId = newBuildingId;
 //    console.log(buildingid);
 //}
+
+function newUser(){
+    document.getElementById('login').style.display='none';
+    if (userType=="manager"){
+        var bl = document.getElementById('buildingListContainer');
+        bl.style.display="none";
+    }
+    document.getElementById('createUser').style.display="block";
+}
 
 function addUser(){
     item= {

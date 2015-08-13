@@ -105,7 +105,8 @@ def status(request):
     status = []
     for s in statusList:
         sitem= {
-            "name": s.name
+            "name": s.name,
+            "id": s.id
         }
         status.append(sitem)
     return HttpResponse(json.dumps(status))
@@ -125,6 +126,7 @@ def maintenance(request):
             m.maintenance_rental = request.POST["maintenance_rental"]
             m.maintenance_author = request.POST["maintenance_author"]
             m.maintenance_request = request.POST["maintenance_request"]
+            m.status = Status.objects.filter(id=request.POST["maintenance_status"])[0]
             m.user = request.user
 
             m.save()
@@ -141,6 +143,7 @@ def maintenance(request):
             "maintenance_request": main.maintenance_request,
             "maintenance_date": str(main.maintenance_date),
             "maintenance_status": main.status.name,
+            "maintenance_status_id": main.status.id,
         }
         maintenances.append(maintenance)
     return HttpResponse(json.dumps(maintenances))

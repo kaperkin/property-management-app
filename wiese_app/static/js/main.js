@@ -1,5 +1,5 @@
 // ToDo
-// Create model for status of request
+// after save update, new maint request defaults to previous update info
 // document workflow model
 
 ////// init function to kick it all off //////////////////////
@@ -197,6 +197,12 @@ function showOwnerView() {
 function addMaintenanceRequest() {
     hideContent();
     document.getElementById("statusDiv").innerHTML="";
+    document.getElementById("mainId").innerHTML="";
+    document.getElementById("buildingName").style.display ="none";
+    document.getElementById("buildingList").innerHTML = "";
+    document.getElementById("maintenance_rental").value = "";
+    document.getElementById("maintenance_author").value= "";
+    document.getElementById("maintenance_request").value = "";
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
     var statusDiv = document.getElementById("statusDiv");
@@ -207,23 +213,22 @@ function addMaintenanceRequest() {
         var r = document.createElement("input");
         r.setAttribute('type', 'radio');
         r.setAttribute('name', 'status');
-        r.setAttribute('id', statusList[i].name);
+        r.className = 'radio';
+        r.setAttribute('id', statusList[i].id);
         var label = document.createElement("label");
         label.setAttribute('for', statusList[i].name );
         label.innerHTML=statusList[i].name;
         statusDiv.appendChild(r);
         statusDiv.appendChild(label);
     }
-
     //create for loop to add to list using buildings obtained with oreq variable
-    for (var i = 0; i < buildings.length; i++) {
-        console.log(buildings[i].id);
-        if (buildings[i].id == user.building_id) {
+    for (var b = 0; b < buildings.length; b++) {
+        console.log(buildings[b].id);
+        if (buildings[b].id == user.building_id) {
             bl.style.display = "none";
             bn = document.getElementById("buildingName");
-            bn.innerHTML = buildings[i].rental_name;
+            bn.innerHTML = buildings[b].rental_name;
             statusDiv.style.display = "none";
-
         }
     }
 
@@ -243,10 +248,11 @@ function addMaintenanceRequest() {
 
 function editMaintenanceRequest(id) {
     console.log(id);
-    for (i = 0; i < window.maintenances.length; i++) {
-        m = window.maintenances[i];
+    for (var q = 0; q < window.maintenances.length; q++) {
+        m = window.maintenances[q];
         if (m.mainId == id) {
             mainReq = m;
+            console.log(mainReq);
             break;
         }
     }
@@ -256,21 +262,20 @@ function editMaintenanceRequest(id) {
     }
     addMaintenanceRequest();
     document.getElementById("mainId").value = mainReq.mainId;
-    //console.log(mainReq.rental.rental_name); // undefined
     document.getElementById("buildingName").innerHTML = mainReq.rental;
+    document.getElementById("buildingList").value = mainReq.id;
     document.getElementById("maintenance_rental").value = mainReq.maintenance_rental;
     document.getElementById("maintenance_author").value = mainReq.maintenance_author;
     document.getElementById("maintenance_request").value = mainReq.maintenance_request;
 
     var statusDiv = document.getElementById('statusDiv');
-    var radioBtns = statusDiv.getElementsByTagName('status');
+    var radioBtns = statusDiv.getElementsByClassName('radio');
     for(var p=0; p<radioBtns.length; p++){
-        if (radioBtns[p] == mainReq.maintenance_status){
+        if (radioBtns[p].id == mainReq.maintenance_status_id){
             radioBtns[p].defaultChecked= true;
             break;
         }
     }
-    console.log(radioBtns);
 }
 
 function allMaintenanceRequests() {
@@ -303,21 +308,15 @@ function allMaintenanceRequests() {
         maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
         blankUL.appendChild(maintenanceRequest);
         // add maintenance status
-        var maintenanceStatus = document.createElement("ul");
-        //create radio buttons for status
+        var maintenanceStatus = document.createElement("li");
+        //create radio button for status
         for (var rb=0; rb<statusList.length; rb++){
             if (statusList[rb].name == maintenances[i].maintenance_status){
-               var r = document.createElement("input");
-            r.setAttribute('type', 'radio');
-            r.setAttribute('name', 'status');
-            r.setAttribute('id', statusList[rb].name);
-            var label = document.createElement("label");
-            label.setAttribute('for', statusList[rb].name );
-            label.innerHTML=statusList[rb].name;
-            maintenanceStatus.appendChild(r);
-            maintenanceStatus.appendChild(label);
+               maintenanceStatus.innerHTML= "Status: "+statusList[rb].name;
+                break;
             }
-    }
+        }
+        blankUL.appendChild(maintenanceStatus);
         blankUL.appendChild(maintenanceStatus);
         //add button to link to update maintenance request
         var updateButton = document.createElement("button");
@@ -360,6 +359,16 @@ function buildingMaintReq(e) {
             var maintenanceRequest = document.createElement("li");
             maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
             blankUL.appendChild(maintenanceRequest);
+            // add maintenance status
+            var maintenanceStatus = document.createElement("li");
+            //create radio button for status
+            for (var rb=0; rb<statusList.length; rb++){
+                if (statusList[rb].name == maintenances[i].maintenance_status){
+                   maintenanceStatus.innerHTML= "Status: " + statusList[rb].name;
+                    break;
+                }
+            }
+            blankUL.appendChild(maintenanceStatus);
             //add button to link to update maintenance request
             var updateButton = document.createElement("button");
             updateButton.innerHTML = "Update";
@@ -379,11 +388,13 @@ function buildingMaintReq(e) {
 function sendMaintenanceRequest() {
     //find which radio button is checked
     var statusDiv = document.getElementById("statusDiv");
-    var radios = statusDiv.getElementsByTagName("input");
-    var maintenance_status = "";
+    var radios = statusDiv.getElementsByClassName("radio");
+    var maintenance_status = 0;
     for (var i = 0; i<radios.length; i++) {
         if (radios[i].checked) {
             maintenance_status = radios[i].id;
+            console.log(maintenance_status);
+            break;
          }
         }
 
@@ -395,7 +406,9 @@ function sendMaintenanceRequest() {
         "maintenance_rental": document.getElementById("maintenance_rental").value,
         "maintenance_author": document.getElementById("maintenance_author").value,
         "maintenance_request": document.getElementById("maintenance_request").value,
+        "maintenance_status": maintenance_status
     };
+    console.log(item);
     if(isRenter){
         item["building_id"] = user.building_id;
     }
@@ -409,13 +422,13 @@ function deleteMaintenanceRequest(id) {
     form_data.append('mainId', id);
     form_data.append('action', 'DELETE');
     var request = new XMLHttpRequest();
-    request.open("POST", "/maintenance/");
-    request.send(form_data);
     document.getElementById("showAllMaintenance").innerHTML = "";
-    request.onload(function(){
+    request.onload= function(){
         getBuildings();
         allMaintenanceRequests();
-    });
+    };
+    request.open("POST", "/maintenance/");
+    request.send(form_data);
 }
 
 /////////// Property Functions ////////////////////////
