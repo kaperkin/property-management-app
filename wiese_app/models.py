@@ -19,6 +19,12 @@ class Renter(models.Model):
     user = models.ForeignKey(User)
     building = models.ForeignKey(Rentals)
 
+class Status(models.Model):
+    name = models.CharField(max_length = 20)
+
+    def __str__(self):
+        return self.name
+
 class Maintenance(models.Model):
     rental = models.ForeignKey(Rentals)
     user = models.ForeignKey(User)
@@ -34,5 +40,3 @@ class Maintenance(models.Model):
 class Manager(models.Model):
     user = models.ForeignKey(User)
 
-class Status(models.Model):
-    name = models.CharField(max_length = 20)

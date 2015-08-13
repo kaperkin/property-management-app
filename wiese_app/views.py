@@ -8,7 +8,7 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext, loader
-from .models import Rentals, Maintenance, Manager, Renter
+from .models import Rentals, Maintenance, Manager, Renter, Status
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -98,6 +98,18 @@ def buildings(request):
         buildings.append(building)
     return HttpResponse(json.dumps(buildings))
 
+
+@csrf_exempt
+def status(request):
+    statusList = Status.objects.all()
+    status = []
+    for s in statusList:
+        sitem= {
+            "name": s.name
+        }
+        status.append(sitem)
+    return HttpResponse(json.dumps(status))
+
 @csrf_exempt
 def maintenance(request):
     if request.POST:
@@ -128,6 +140,7 @@ def maintenance(request):
             "maintenance_author": main.maintenance_author,
             "maintenance_request": main.maintenance_request,
             "maintenance_date": str(main.maintenance_date),
+            "maintenance_status": main.status.name,
         }
         maintenances.append(maintenance)
     return HttpResponse(json.dumps(maintenances))

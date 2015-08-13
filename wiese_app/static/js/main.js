@@ -89,6 +89,21 @@ function getMaintenance() {
     mReq.send();
 }
 
+function statusListener(){
+    console.log(this.responseText);
+    window.statusList = JSON.parse(this.responseText);
+    console.log(statusList);
+    console.log(statusList.length);
+}
+
+function getStatus(){
+    sReq = new XMLHttpRequest();
+    sReq.onload = statusListener;
+    sReq.open("get", "/status/", true);
+    sReq.send();
+
+}
+
 ////// hide content //////////////
 function hideContent() {
     var elements = document.getElementsByClassName("content");
@@ -110,12 +125,14 @@ function viewHome(){
 ///////// Show views /////////////////////////////////
 /////////////////////////////////////////////////////
 function showRenterView() {
+    getStatus();
     var element = document.getElementById("renter_maintenance_link");
     element.style.display = "block";
 }
 
 function showOwnerView() {
     hideContent();
+    getStatus();
     var element = document.getElementById("owner_view");
     element.style.display = "block";
     text = document.getElementById("buildingDetail");
@@ -179,28 +196,22 @@ function showOwnerView() {
 ////////////////////////////////////////////////////////
 function addMaintenanceRequest() {
     hideContent();
+    document.getElementById("statusDiv").innerHTML="";
     var element = document.getElementById("maintenanceRequest");
     element.style.display = "block";
     var statusDiv = document.getElementById("statusDiv");
     // Get drop down list for building list
     var bl = document.getElementById("buildingList");
     //create radio buttons for status
-    var status =[
-        {   "id": 2,
-            "name": "new"
-        },
-        {
-          "id": 4,
-            "name": "in progress"
-        }];
-    for (var i=0; i< status.length; i++){
-        var label = document.createElement("label");
-        r = document.createElement("input");
+    for (var i=0; i<statusList.length; i++){
+        var r = document.createElement("input");
         r.setAttribute('type', 'radio');
         r.setAttribute('name', 'status');
-        r.value = status[i].id;
-        label.innerHTML=status[i].name;
-        label.appendChild(r);
+        r.setAttribute('id', statusList[i].name);
+        var label = document.createElement("label");
+        label.setAttribute('for', statusList[i].name );
+        label.innerHTML=statusList[i].name;
+        statusDiv.appendChild(r);
         statusDiv.appendChild(label);
     }
 
@@ -239,17 +250,27 @@ function editMaintenanceRequest(id) {
             break;
         }
     }
-    if (isManager ) {
+    if (isManager) {
         var bl = document.getElementById("buildingList");
         bl.style.display = "none";
     }
     addMaintenanceRequest();
     document.getElementById("mainId").value = mainReq.mainId;
-    console.log(mainReq.rental.rental_name); // undefined
+    //console.log(mainReq.rental.rental_name); // undefined
     document.getElementById("buildingName").innerHTML = mainReq.rental;
     document.getElementById("maintenance_rental").value = mainReq.maintenance_rental;
     document.getElementById("maintenance_author").value = mainReq.maintenance_author;
     document.getElementById("maintenance_request").value = mainReq.maintenance_request;
+
+    var statusDiv = document.getElementById('statusDiv');
+    var radioBtns = statusDiv.getElementsByTagName('status');
+    for(var p=0; p<radioBtns.length; p++){
+        if (radioBtns[p] == mainReq.maintenance_status){
+            radioBtns[p].defaultChecked= true;
+            break;
+        }
+    }
+    console.log(radioBtns);
 }
 
 function allMaintenanceRequests() {
@@ -257,7 +278,8 @@ function allMaintenanceRequests() {
     element.innerHTML = "";
     element.style.display = "block";
 
-    for (i = 0; i < maintenances.length; i++) {
+    for (var i = 0; i < maintenances.length; i++) {
+        console.log(maintenances[i]);
         var text = document.getElementById("showAllMaintenance");
         // add building name
         var buildingName = document.createElement("li");
@@ -280,6 +302,23 @@ function allMaintenanceRequests() {
         var maintenanceRequest = document.createElement("li");
         maintenanceRequest.innerHTML = maintenances[i].maintenance_request;
         blankUL.appendChild(maintenanceRequest);
+        // add maintenance status
+        var maintenanceStatus = document.createElement("ul");
+        //create radio buttons for status
+        for (var rb=0; rb<statusList.length; rb++){
+            if (statusList[rb].name == maintenances[i].maintenance_status){
+               var r = document.createElement("input");
+            r.setAttribute('type', 'radio');
+            r.setAttribute('name', 'status');
+            r.setAttribute('id', statusList[rb].name);
+            var label = document.createElement("label");
+            label.setAttribute('for', statusList[rb].name );
+            label.innerHTML=statusList[rb].name;
+            maintenanceStatus.appendChild(r);
+            maintenanceStatus.appendChild(label);
+            }
+    }
+        blankUL.appendChild(maintenanceStatus);
         //add button to link to update maintenance request
         var updateButton = document.createElement("button");
         updateButton.innerHTML = "Update";
@@ -343,9 +382,9 @@ function sendMaintenanceRequest() {
     var radios = statusDiv.getElementsByTagName("input");
     var maintenance_status = "";
     for (var i = 0; i<radios.length; i++) {
-        if (radios[i].checked){
-            maintenance_status = radios[i].value
-            }
+        if (radios[i].checked) {
+            maintenance_status = radios[i].id;
+         }
         }
 
     // creates a dictionary to hold the information on the form
