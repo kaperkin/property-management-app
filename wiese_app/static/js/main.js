@@ -2,15 +2,14 @@
 // document workflow model
 // add image upload?
 //allow renters to access their requests?
+//link to github on footer
+//link in readme to live site
 
 ////// init function to kick it all off //////////////////////
 /////////////////////////////////////////////////////////
 function init() {
     document.getElementById("header").addEventListener("click", viewHome);
-    //document.getElementById("header").addEventListener("click", welcomeButtons);
-    //document.getElementById("renterButton").addEventListener("click", showRenterView);
     document.getElementById("renter_maintenance_link").addEventListener("click", renterGetBuildings);
-    //document.getElementById("ownerButton").addEventListener("click", getBuildings);
     document.getElementById("owner_maintenance_add").addEventListener("click", addMaintenanceRequest);
     document.getElementById("owner_property_add").addEventListener("click", addProperty);
     document.getElementById("all_maintenance_requests").addEventListener("click", allMaintenanceRequests);
@@ -19,7 +18,6 @@ function init() {
     isManager = window.location.hash == "#view=manager";
     isRenter = window.location.hash == "#view=renter";
     console.log(window.location.hash);
-    // viewHome();
     viewHome();
 }
 
@@ -390,8 +388,6 @@ function buildingMaintReq(e) {
             deleteButton.innerHTML = "Delete";
             deleteButton.setAttribute("onclick", "deleteMaintenanceRequest(" + maintenances[i].mainId + ")");
             blankUL.appendChild(deleteButton);
-
-
         }
     }
 }

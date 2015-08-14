@@ -9,16 +9,6 @@ function initLogin(){
 }
 document.addEventListener("DOMContentLoaded", initLogin);
 
-//function renterChange(e){
-//    var renter = document.getElementById('renter');
-//    var list = document.getElementById('buildingListContainer');
-//    if(renter.checked){
-//        list.style.display = 'block';
-//    }else{
-//        list.style.display = 'none';
-//    }
-//}
-
 function welcomeButton(){
     document.getElementById('createUser').style.display="none";
     document.getElementById('login').style.display='none';

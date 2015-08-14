@@ -19,6 +19,12 @@ input {
     color: #fff9fe;
 }
 
+footer{
+    position: fixed;
+    bottom: 0;
+
+}
+
 .content{
     display: none;
 }
