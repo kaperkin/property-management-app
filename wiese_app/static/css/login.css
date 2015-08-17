@@ -5,6 +5,7 @@ body {
     font-family: 'Merriweather', sans-serif;
     margin: 0;
     box-sizing: border-box;
+    text-align: center;
 }
 
 header {
@@ -17,21 +18,6 @@ header {
     background-size: 100% 100%;
 }
 
-a {
-    color: #fff9fe;
-}
-
-input {
-    background-color: #195f77;
-    color: #fff9fe;
-    min-height: 2em;
-}
-
-input[type="radio"] {
-    height: 1.5em;
-    width: 1.5em;
-}
-
 footer{
     position: fixed;
     bottom: 0;
@@ -40,6 +26,12 @@ footer{
     padding: 1em 0;
     background-color: #195f77;
     text-align: center;
+}
+
+input {
+    background-color: #195f77;
+    color: #fff9fe;
+    min-height: 2em;
 }
 
 .button{
@@ -54,10 +46,6 @@ footer{
     display: inline-block;
 }
 
-.button-panel{
-    text-align: center;
-}
-
 .save-cancel-delete-button{
     padding: 0.5em 0.5em;
     margin: 1em 1em;
@@ -69,13 +57,13 @@ footer{
     font-size: 18px;
     display: inline-block;
 }
+
 .content{
     display: none;
     margin: 0 5%;
 }
 
 .wrapper{
-
     margin-bottom: 4em;
 }
 
@@ -84,35 +72,16 @@ footer{
     margin: 2em auto;
 }
 
-#showAllMaintenance >li{
-    display: inline-block;
-    min-height: 8em;
-    vertical-align: top;
-    margin: 2em;
-    width: 40%;
+#welcomeButtons{
+    margin: 3em auto;
 }
 
-#delete{
-    background-color: firebrick;
+#login{
+    margin-top: 25px;
 }
 
-#logout {
-    top: -10px;
-    right: 10px;
-    position: fixed;
-}
-
-#all_maintenance_requests{
-    text-decoration: underline;
-}
-
-#maintenance_request{
-    background-color: #195f77;
-    color: #fff9fe;
-}
-
-#buildingList{
-    font-family: 'Merriweather', sans-serif;
-    font-size: .75em;
+#createUser{
+    margin-bottom: 4em;
+    margin-top: 0;
 }
 

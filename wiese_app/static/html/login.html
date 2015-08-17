@@ -1,99 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <title>
-           Wiese
-   </title>
-    <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" type="text/css" href='/css/main.css'/>
+    <meta charset="UTF-8">
+    <title>
+        Wiese
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" type="text/css" href='/css/login.css'/>
 </head>
 <body>
-   <header>
-        <span class="wrapper" id="header">Wiese Property</span>
-   </header>
+<header>
+    <span class="wrapper" id="header">Wiese Property</span>
+</header>
 
-    <!-- welcome view -->
-   <div class="wrapper content" id="welcomeButtons">
-        <!--show renter view, hide all else -->
-         <button class="welcome_button" id="renterButton" >Renter</button>
-        <!--show owner view(old index) hide all else -->
-         <button class="welcome_button" id="ownerButton"  >Manager</button></a>
+<!-- welcome view -->
+<div class="wrapper content" id="welcomeButtons">
+    <!--show renter view, hide all else -->
+    <div class="button" id="renterButton">Renter</div>
+    <!--show owner view(old index) hide all else -->
+    <div class="button" id="ownerButton">Manager</div>
+</div>
 
 
-    <div id="login" class="content form-field">
-        <form action="/login/" method="POST">
-            <fieldset>
-                <legend>Sign In</legend>
-                    <label>UserName
-                    <input type="text" name="username">
-                    </label><br>
+<div id="login" class="content form-field">
+    <form action="/login/" method="POST">
+        <fieldset>
+            <legend>Sign In</legend>
+            <label>UserName
+                <input type="text" name="username">
+            </label><br>
 
-                    <label>Password
-                    <input type="password" name="password">
-                    </label><br>
+            <label>Password
+                <input type="password" name="password">
+            </label><br>
 
-                    <input type="submit" value="login">
+            <button class="save-cancel-delete-button" type="submit" value="login">login
+        </fieldset>
+    </form>
+    <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
+</div>
 
-            </fieldset>
-        </form>
-        <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
-    </div>
-
-    <div id="createUser" class="content form-field">
-        <h3>Register</h3>
-        <div>
-            <fieldset>
-                <input type="hidden" value="0" id="id">
-                <input type="hidden" value="" id="userType"
-                <!-- Unused input connected to changeValue() in login.js-->
-                <!--<input type="hidden" value="0" id="BuildingId">-->
-                <legend>Contact Information</legend>
-                <!--<input id="manager" type="radio" name="user_type" value="m">
-                <label for="manager">Manager</label>
-
-                <input id="renter" type="radio" name="user_type" value="r" checked>
-                <label for="renter">Renter</label><br>-->
-
-                <div id="buildingListContainer">
+<div id="createUser" class="content form-field">
+    <h3>Register</h3>
+    <div>
+        <fieldset>
+            <input type="hidden" value="0" id="id">
+            <input type="hidden" value="" id="userType"
+            <!-- Unused input connected to changeValue() in login.js-->
+            <!--<input type="hidden" value="0" id="BuildingId">-->
+            <legend>Contact Information</legend>
+            <div id="buildingListContainer">
                 <label>Building
-                    <select name = "rental" id="buildingList">
+                    <select name="rental" id="buildingList">
                     </select>
-                </label><br>
-                </div>
+                </label>
+            </div>
+            <br>
 
-                <label>First Name
-                    <input id="first_name" type="text" name="first_name">
-                </label><br>
+            <label>First Name
+                <input id="first_name" type="text" name="first_name">
+            </label><br>
 
-                <label>Last Name
-                    <input id="last_name" type="text" name="last_name">
-                </label><br>
+            <label>Last Name
+                <input id="last_name" type="text" name="last_name">
+            </label><br>
 
-                <label>Email
-                    <input id="email" type="text" name="email">
-                </label><br>
+            <label>Email
+                <input id="email" type="text" name="email">
+            </label><br>
 
-                <label>UserName
-                    <input id="username" type="text" name="username">
-                </label><br>
+            <label>UserName
+                <input id="username" type="text" name="username">
+            </label><br>
 
-                <label>Password
-                    <input id="password" type="password" name="password">
-                </label><br>
+            <label>Password
+                <input id="password" type="password" name="password">
+            </label><br>
 
-                <button onclick="addUser()">Save</button>
-                <button onclick="home()">Cancel</button>
-            </fieldset>
-        </div>
+            <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
+            <div class="save-cancel-delete-button" onclick="home()">Cancel</div>
+        </fieldset>
     </div>
-   </div>
+</div>
+
 <footer>
-    <span>Check out my code on <a href = "https://github.com/kaperkin">GitHub</a></span>
-    <span>Connect with me on <a href = "">LinkedIn</a> or <a href="https://twitter.com/kaperkin" >Twitter</a></span>
+    <span>Check out my code on <a href="https://github.com/kaperkin">GitHub</a></span>
+    <span>Connect with me on <a href="">LinkedIn</a> or <a href="https://twitter.com/kaperkin">Twitter</a></span>
 </footer>
 
-   </body>
+</body>
 
 <script type="text/javascript" src='/js/login.js'></script>
 </html>

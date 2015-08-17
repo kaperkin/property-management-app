@@ -3,17 +3,14 @@ function initLogin(){
     document.getElementById("ownerButton").addEventListener("click", setUserType);
     document.getElementById("header").addEventListener("click", welcomeButton);
     document.getElementById('newUser').addEventListener("click", newUser);
-    //document.getElementById('renter').addEventListener("change", renterChange);
-    //document.getElementById('manager').addEventListener("change", renterChange);
-    //document.getElementById('buildingList').addEventListener("change", changeValue);
+    document.getElementById('welcomeButtons').style.display = "inline-block";
 }
 document.addEventListener("DOMContentLoaded", initLogin);
 
 function welcomeButton(){
     document.getElementById('createUser').style.display="none";
     document.getElementById('login').style.display='none';
-    document.getElementById('renterButton').style.display='block';
-    document.getElementById('ownerButton').style.display='block';
+    document.getElementById('welcomeButtons').style.display='inline-block';
 }
 
 function setUserType(){
@@ -24,10 +21,8 @@ function setUserType(){
         //return manager login/reg
         window.userType = document.getElementById('userType').value = "manager";
     }
-    var welcome = document.getElementsByClassName("welcome_button");
-    for (var i = 0; i<welcome.length; i++){
-        welcome[i].style.display = "none";
-    }
+    var welcome = document.getElementById("welcomeButtons");
+    welcome.style.display = "none";
     home();
    //make renter checked or add hash? then direct to proper login and registration
 }
@@ -80,11 +75,13 @@ getBuildings();
 
 function newUser(){
     document.getElementById('login').style.display='none';
+     var bl = document.getElementById('buildingListContainer');
     if (userType=="manager"){
-        var bl = document.getElementById('buildingListContainer');
         bl.style.display="none";
+    }else{
+       bl.style.display="inline-block";
     }
-    document.getElementById('createUser').style.display="block";
+    document.getElementById('createUser').style.display="inline-block";
 }
 
 function addUser(){

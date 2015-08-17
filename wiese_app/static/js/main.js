@@ -195,6 +195,7 @@ function showOwnerView() {
 ////////////////////////////////////////////////////////
 function addMaintenanceRequest() {
     hideContent();
+    document.getElementById("buildingList").innerHTML="";
     document.getElementById("statusDiv").innerHTML="";
     document.getElementById("mainId").innerHTML="";
     document.getElementById("maintenance_rental").value = "";
