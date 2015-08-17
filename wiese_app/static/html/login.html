@@ -5,11 +5,12 @@
    <title>
            Wiese
    </title>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" type="text/css" href='/css/main.css'/>
 </head>
 <body>
    <header>
-        <span id="header">Wiese Property</span>
+        <span class="wrapper" id="header">Wiese Property</span>
    </header>
 
     <!-- welcome view -->
@@ -18,9 +19,9 @@
          <button class="welcome_button" id="renterButton" >Renter</button>
         <!--show owner view(old index) hide all else -->
          <button class="welcome_button" id="ownerButton"  >Manager</button></a>
-   </div>
 
-    <div id="login" class="content">
+
+    <div id="login" class="content form-field">
         <form action="/login/" method="POST">
             <fieldset>
                 <legend>Sign In</legend>
@@ -39,7 +40,7 @@
         <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
     </div>
 
-    <div id="createUser" class="content">
+    <div id="createUser" class="content form-field">
         <h3>Register</h3>
         <div>
             <fieldset>
@@ -86,6 +87,7 @@
             </fieldset>
         </div>
     </div>
+   </div>
 <footer>
     <span>Check out my code on <a href = "https://github.com/kaperkin">GitHub</a></span>
     <span>Connect with me on <a href = "">LinkedIn</a> or <a href="https://twitter.com/kaperkin" >Twitter</a></span>

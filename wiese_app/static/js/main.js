@@ -126,7 +126,7 @@ function viewHome(){
 function showRenterView() {
     getStatus();
     var element = document.getElementById("renter_maintenance_link");
-    element.style.display = "block";
+    element.style.display = "flex";
 }
 
 function showOwnerView() {
@@ -328,14 +328,17 @@ function allMaintenanceRequests() {
         blankUL.appendChild(maintenanceStatus);
         blankUL.appendChild(maintenanceStatus);
         //add button to link to update maintenance request
-        var updateButton = document.createElement("button");
+        var updateButton = document.createElement("div");
         updateButton.innerHTML = "Update";
         updateButton.setAttribute("onclick", "editMaintenanceRequest(" + maintenances[i].mainId + ")");
+        updateButton.className = "save-cancel-delete-button";
         blankUL.appendChild(updateButton);
         //add button to link to delete maintenance request
-        var deleteButton = document.createElement("button");
+        var deleteButton = document.createElement("div");
         deleteButton.innerHTML = "Delete";
         deleteButton.setAttribute("onclick", "deleteMaintenanceRequest(" + maintenances[i].mainId + ")");
+        deleteButton.setAttribute("id", "delete");
+        deleteButton.className = "save-cancel-delete-button";
         blankUL.appendChild(deleteButton);
     }
 }
@@ -353,7 +356,7 @@ function buildingMaintReq(e) {
             text.appendChild(buildingName);
             // add blank ul
             var blankUL = document.createElement("ul");
-            text.appendChild(blankUL);
+            buildingName.appendChild(blankUL);
             //add unit number if it exists
             if (maintenances[i].maintenance_rental != "") {
                 unit = document.createElement("li");
@@ -379,14 +382,17 @@ function buildingMaintReq(e) {
             }
             blankUL.appendChild(maintenanceStatus);
             //add button to link to update maintenance request
-            var updateButton = document.createElement("button");
+            var updateButton = document.createElement("div");
             updateButton.innerHTML = "Update";
             updateButton.setAttribute("onclick", "editMaintenanceRequest(" + maintenances[i].mainId + ")");
+            updateButton.className="save-cancel-delete-button";
             blankUL.appendChild(updateButton);
             //add button to link to delete maintenance request
-            var deleteButton = document.createElement("button");
+            var deleteButton = document.createElement("div");
+            deleteButton.className = "save-cancel-delete-button";
             deleteButton.innerHTML = "Delete";
             deleteButton.setAttribute("onclick", "deleteMaintenanceRequest(" + maintenances[i].mainId + ")");
+            deleteButton.setAttribute("id", "delete");
             blankUL.appendChild(deleteButton);
         }
     }
