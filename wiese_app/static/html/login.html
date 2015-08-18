@@ -27,14 +27,15 @@
     <form action="/login/" method="POST">
         <fieldset>
             <legend>Sign In</legend>
-            <label>UserName
-                <input type="text" name="username">
-            </label><br>
+            <div class="inner-form">
+                <label>UserName
+                    <input type="text" name="username">
+                </label><br>
 
-            <label>Password
-                <input type="password" name="password">
-            </label><br>
-
+                <label>Password
+                    <input type="password" name="password">
+                </label><br>
+            </div>
             <button class="save-cancel-delete-button" type="submit" value="login">login
         </fieldset>
     </form>
@@ -43,6 +44,7 @@
 
 <div id="createUser" class="content form-field">
     <h3>Register</h3>
+
     <div>
         <fieldset>
             <input type="hidden" value="0" id="id">
@@ -50,34 +52,34 @@
             <!-- Unused input connected to changeValue() in login.js-->
             <!--<input type="hidden" value="0" id="BuildingId">-->
             <legend>Contact Information</legend>
-            <div id="buildingListContainer">
-                <label>Building
-                    <select name="rental" id="buildingList">
-                    </select>
-                </label>
+            <div class="inner-form">
+                <div id="buildingListContainer">
+                    <label id="building-label">Building</label>
+                        <select name="rental" id="buildingList">
+                        </select>
+                </div>
+                <br>
+
+                <label>First Name
+                    <input id="first_name" type="text" name="first_name">
+                </label><br>
+
+                <label>Last Name
+                    <input id="last_name" type="text" name="last_name">
+                </label><br>
+
+                <label>Email
+                    <input id="email" type="text" name="email">
+                </label><br>
+
+                <label>UserName
+                    <input id="username" type="text" name="username">
+                </label><br>
+
+                <label>Password
+                    <input id="password" type="password" name="password">
+                </label><br>
             </div>
-            <br>
-
-            <label>First Name
-                <input id="first_name" type="text" name="first_name">
-            </label><br>
-
-            <label>Last Name
-                <input id="last_name" type="text" name="last_name">
-            </label><br>
-
-            <label>Email
-                <input id="email" type="text" name="email">
-            </label><br>
-
-            <label>UserName
-                <input id="username" type="text" name="username">
-            </label><br>
-
-            <label>Password
-                <input id="password" type="password" name="password">
-            </label><br>
-
             <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
             <div class="save-cancel-delete-button" onclick="home()">Cancel</div>
         </fieldset>

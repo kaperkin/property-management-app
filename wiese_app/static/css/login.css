@@ -31,7 +31,9 @@ footer{
 input {
     background-color: #195f77;
     color: #fff9fe;
-    min-height: 2em;
+    margin-bottom: .25em;
+    font-size: 1em;
+
 }
 
 .button{
@@ -68,8 +70,13 @@ input {
 }
 
 .form-field{
-    width: 40%;
+    width: 45%;
     margin: 2em auto;
+}
+
+.inner-form{
+    text-align: right;
+    padding-right: 4em;
 }
 
 #welcomeButtons{
@@ -85,3 +92,14 @@ input {
     margin-top: 0;
 }
 
+#building-label{
+    padding-right: 4em;
+}
+
+#buildingList{
+    background-color: #195f77;
+    color: #fff9fe;
+    min-height: 2em;
+    margin-bottom: .25em;
+    font-size: .85em;
+}

@@ -2,7 +2,6 @@
 // document workflow model
 // add image upload?
 //allow renters to access their requests?
-//link to github on footer
 //link in readme to live site
 
 ////// init function to kick it all off //////////////////////
