@@ -125,7 +125,7 @@ function viewHome(){
 function showRenterView() {
     getStatus();
     var element = document.getElementById("renter_maintenance_link");
-    element.style.display = "flex";
+    element.style.display = "inline-block";
 }
 
 function showOwnerView() {
