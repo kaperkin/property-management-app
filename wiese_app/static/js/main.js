@@ -30,7 +30,7 @@ function userListener() {
     console.log(this.responseText);
     window.user = JSON.parse(this.responseText);
     if (user.user_id == "0"){
-        window.location = "/login.html";
+        window.location = "/";
     }
 }
 

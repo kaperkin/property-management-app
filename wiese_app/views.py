@@ -17,7 +17,7 @@ import json
 
 
 def index(request):
-    template = loader.get_template('/wiese_app/static/html/index.html')
+    template = loader.get_template('/wiese_app/static/html/main.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
@@ -48,11 +48,11 @@ def login_view(request):
             managerList = Manager.objects.filter(user = user)
             renterList = Renter.objects.filter(user = user)
             if len(managerList) > 0:
-                return HttpResponseRedirect("/index.html#view=manager")
+                return HttpResponseRedirect("/main.html#view=manager")
             elif len(renterList) > 0:
-                return HttpResponseRedirect("/index.html#view=renter")
+                return HttpResponseRedirect("/main.html#view=renter")
             else:
-                return HttpResponseRedirect("/login.html")
+                return HttpResponseRedirect("/")
     template = loader.get_template('/wiese_app/static/html/login.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
@@ -60,7 +60,7 @@ def login_view(request):
 @csrf_exempt
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect("/login.html")
+    return HttpResponseRedirect("/")
 
 @csrf_exempt
 def buildings(request):

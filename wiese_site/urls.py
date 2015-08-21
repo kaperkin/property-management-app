@@ -3,9 +3,8 @@ from django.contrib import admin
 from wiese_app import views, old_views
 from django.conf import settings
 urlpatterns = patterns('',
-    # Examples:
+    ########## URLs #############################
     #############################################
-    #new url
     url(r'^buildings/$', views.buildings, name="buildings"),
     url(r'^maintenance/$', views.maintenance, name="maintenance"),
     url(r'^login/$', views.login_view, name="login"),
@@ -24,7 +23,6 @@ urlpatterns = patterns('',
     url(r'^rental/(?P<id>[0-9]+)/$', old_views.building_spec, name='building_spec'),
     url(r'^update_request/(?P<id>[0-9]+)/$', old_views.update_request, name='update_request'),
     url(r'^update_building/(?P<id>[0-9]+)/$', old_views.update_building, name='update_building'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 # If index.html or nothing (/), then serve static html into url
@@ -32,7 +30,7 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     urlpatterns += patterns(
         'django.contrib.staticfiles.views',
-        url(r'^(?:index.html)?$', 'serve', kwargs={'path': 'html/index.html'}),
         url(r'^(?:login.html)?$', 'serve', kwargs={'path': 'html/login.html'}),
+        url(r'^main.html$', 'serve', kwargs={'path': 'html/main.html'}),
         url(r'^(?P<path>(?:js|css|img)/.*)$', 'serve'),
     )
