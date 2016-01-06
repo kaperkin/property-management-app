@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>
+           Wiese
+   </title>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" type="text/css" href='/css/main.css'/>
+</head>
+<body>
+   <header>
+        <span id="header">Wiese Property</span>
+       <div class="button" id="logout">Logout</div>
+   </header>
+<div class="wrapper" id="content">
+
+    <!--renter view -->
+    <!--on click show update_request section index[0] -->
+    <div class="content button" id="renter_maintenance_link" > add maintenance request</div>
+
+    <!--owner view -->
+
+        <div class="content" id="owner_view">
+            <div class="button-panel">
+                <!--on click show update_building section index[0] -->
+                <div class="button" id="owner_property_add" >add property</div>
+                <!--on click show update request index[0] -->
+                <div class="button" id="owner_maintenance_add">add maintenance request</div>
+                <!--show all maintenance requests -->
+             </div>
+    <h1 id="all_maintenance_requests" >All Maintenance Requests</h1>
+        <h3>Maintenance Requests by Building</h3>
+    <ul id="maintenanceDetail">
+   </ul>
+
+    <ul class="content" id="showAllMaintenance">
+    </ul>
+
+    <h1>Building Details</h1>
+    <ul id="buildingDetail">
+         <!--on click update property details -->
+
+    </ul>
+
+</div>
+
+    <!--update maintenance, add maintenance request -->
+    <div  class="content form-field" id="maintenanceRequest" method="POST">
+        <fieldset>
+            <legend>Maintenance Request</legend>
+            <input type="hidden" value="0" id="mainId">
+        <label>Building</label><br>
+            <select name = "rental" id="buildingList">
+            </select><span id="buildingName"></span><br>
+        <label>Unit Number</label><br>
+            <input name = "maintenance_rental" id="maintenance_rental"><br>
+        <label>Tenant Name</label><br>
+            <input name = "maintenance_author" id="maintenance_author"><br>
+        <label>Maintenance Request</label><br>
+             <textarea name = "maintenance_request" id="maintenance_request" cols="20" rows="4"></textarea><br>
+          <div id="statusDiv">
+          </div>
+        </fieldset>
+        <div class="save-cancel-delete-button" onclick="sendMaintenanceRequest()" value = "SAVE">Save Changes</div>
+        <div class="save-cancel-delete-button" onclick="viewHome()">Cancel</div>
+    </div>
+
+    <!-- update building, add new property -->
+    <div class="content form-field" id="updateAddBuilding" method="POST">
+        <fieldset>
+            <legend>Property</legend>
+            <input type="hidden" value="0" id="id">
+            <label>Rental Name</label><br>
+            <input name = "rental_name" id="rental_name" ><br>
+            <label>Address</label><br>
+            <input name = "address" id="address"><br>
+            <label>City</label><br>
+            <input name = "city" id="city"><br>
+            <label>State</label><br>
+            <input name = "state" id="state"><br>
+            <label>Zipcode</label><br>
+            <input name = "zipcode" id="zipcode"><br>
+        </fieldset>
+    <div class="save-cancel-delete-button" onclick="sendBuildingUpdate()" value = "SAVE" name="action">Save Changes</div>
+    <div class="save-cancel-delete-button" onclick="viewHome()">Cancel</div><br>
+    <div class="save-cancel-delete-button" onclick="deleteBuilding()" value="DELETE" name="action" id="delete">Delete Property</div>
+    </div>
+
+    </div>
+<footer>
+    <span>Check out my code on <a href = "https://github.com/kaperkin">GitHub</a></span>
+    <span>Connect with me on <a href = "">LinkedIn</a> or <a href="https://twitter.com/kaperkin" >Twitter</a></span>
+</footer>
+
+   </body>
+
+<script type="text/javascript" src='/js/main.js'></script>
+</html>

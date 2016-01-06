@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+import datetime
 
 
 import json
@@ -154,6 +154,7 @@ def createUser(request):
         user.email = request.POST["email"]
         user.username = request.POST["username"]
         user.set_password(request.POST["password"])
+	user.last_login = datetime.datetime.now()
         user.save()
         if request.POST["userType"] == "renter":
             renter = Renter()

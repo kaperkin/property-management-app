@@ -1,0 +1,122 @@
+body {
+    background-color: cadetblue;
+    color: white;
+    font-size: 20px;
+    font-family: 'Merriweather', sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+max-width: 1300px;
+}
+
+header {
+    font-size: 3em;
+    text-align: center;
+    color: #198f77;
+    height: 325px;
+    text-decoration: underline;
+    background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
+    background-size: 100% 100%;
+}
+
+a {
+    color: #fff9fe;
+}
+
+input {
+    background-color: #195f77;
+    color: #fff9fe;
+    min-height: 2em;
+}
+
+input[type="radio"] {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1em 0;
+    background-color: #195f77;
+    text-align: center;
+}
+
+.button{
+    padding: 1em 2em;
+    margin: 1em 2em;
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+    background-color: #668899;
+    text-align: center;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.button-panel{
+    text-align: center;
+}
+
+.save-cancel-delete-button{
+    padding: 0.5em 0.5em;
+    margin: 1em 1em;
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+    background-color: #668899;
+    text-align: center;
+    font-size: 18px;
+    display: inline-block;
+}
+.content{
+    display: none;
+    margin: 0 5%;
+}
+
+.wrapper{
+
+    margin-bottom: 4em;
+}
+
+.form-field{
+    width: 40%;
+    margin: 2em auto;
+}
+
+#showAllMaintenance >li{
+    display: inline-block;
+    min-height: 8em;
+    vertical-align: top;
+    margin: 2em;
+    width: 40%;
+}
+
+#delete{
+    background-color: firebrick;
+}
+
+#logout {
+    top: -10px;
+    right: 10px;
+    position: fixed;
+}
+
+#all_maintenance_requests{
+    text-decoration: underline;
+}
+
+#maintenance_request{
+    background-color: #195f77;
+    color: #fff9fe;
+}
+
+#buildingList{
+    font-family: 'Merriweather', sans-serif;
+    font-size: .75em;
+}
+
+#renter_maintenance_link{
+    margin: 2em;
+}

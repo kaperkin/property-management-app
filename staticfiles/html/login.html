@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Wiese
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" type="text/css" href='/css/login.css'/>
+</head>
+<body>
+<header>
+    <span class="wrapper" id="header">Wiese Property</span>
+</header>
+
+<!-- welcome view -->
+<div class="wrapper content" id="welcomeButtons">
+    <!--show renter view, hide all else -->
+    <div class="button" id="renterButton">Renter</div>
+    <!--show owner view(old index) hide all else -->
+    <div class="button" id="ownerButton">Manager</div>
+</div>
+
+
+<div id="login" class="content form-field">
+    <form action="/login/" method="POST">
+        <fieldset>
+            <legend>Sign In</legend>
+            <div class="inner-form">
+                <label>UserName
+                    <input type="text" name="username">
+                </label><br>
+
+                <label>Password
+                    <input type="password" name="password">
+                </label><br>
+            </div>
+            <button class="save-cancel-delete-button" type="submit" value="login">login
+        </fieldset>
+    </form>
+    <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
+</div>
+
+<div id="createUser" class="content form-field">
+    <h3>Register</h3>
+
+    <div>
+        <fieldset>
+            <input type="hidden" value="0" id="id">
+            <input type="hidden" value="" id="userType"
+            <!-- Unused input connected to changeValue() in login.js-->
+            <!--<input type="hidden" value="0" id="BuildingId">-->
+            <legend>Contact Information</legend>
+            <div class="inner-form">
+                <div id="buildingListContainer">
+                    <label id="building-label">Building</label>
+                        <select name="rental" id="buildingList">
+                        </select>
+                </div>
+                <br>
+
+                <label>First Name
+                    <input id="first_name" type="text" name="first_name">
+                </label><br>
+
+                <label>Last Name
+                    <input id="last_name" type="text" name="last_name">
+                </label><br>
+
+                <label>Email
+                    <input id="email" type="text" name="email">
+                </label><br>
+
+                <label>UserName
+                    <input id="username" type="text" name="username">
+                </label><br>
+
+                <label>Password
+                    <input id="password" type="password" name="password">
+                </label><br>
+            </div>
+            <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
+            <div class="save-cancel-delete-button" onclick="home()">Cancel</div>
+        </fieldset>
+    </div>
+</div>
+
+<footer>
+    <span>Check out my code on <a href="https://github.com/kaperkin">GitHub</a></span>
+    <span>Connect with me on <a href="">LinkedIn</a> or <a href="https://twitter.com/kaperkin">Twitter</a></span>
+</footer>
+
+</body>
+
+<script type="text/javascript" src='/js/login.js'></script>
+</html>
