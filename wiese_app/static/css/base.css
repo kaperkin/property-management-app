@@ -32,6 +32,16 @@ footer span a {
     color: #668899;
 }
 
+input {
+    background-color: #668899;
+    border: none;
+    border-radius: 4px;
+    color: #fff9fe;
+    margin-bottom: .25em;
+    font-size: 1em;
+}
+
+
 .jumbotron{
     text-align: left;
     color: #080808;
@@ -49,7 +59,7 @@ footer span a {
 .save-cancel-delete-button{
     padding: 0.5em 0.5em;
     margin: 1em 1em;
-    border-radius: 8px;
+    border-radius: 6px;
     color: white;
     background-color: #668899;
     text-align: center;
@@ -59,4 +69,8 @@ footer span a {
 
 .save-cancel-delete-button:hover{
     cursor: hand;
+}
+
+select{
+    border: none;
 }
