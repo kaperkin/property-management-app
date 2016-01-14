@@ -8,14 +8,16 @@ body {
     text-align: center;
 }
 
-header {
-    font-size: 3em;
-    text-align: center;
+.button{
+    padding: 1em 2em;
+    margin: 1em 2em;
+    /*border: 2 solid white;*/
+    border-radius: 4px;
     color: #080808;
-    height: 325px;
-    text-decoration: underline;
-    background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
-    background-size: 100% 100%;
+    background-color: #668899;
+    text-align: center;
+    font-size: 24px;
+    display: inline-block;
 }
 
 footer{
@@ -32,6 +34,15 @@ footer span a {
     color: #668899;
 }
 
+header {
+    /*font-size: 2.5em;*/
+    text-align: left;
+    color: #080808;
+    height: 325px;
+    background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
+    background-size: 100% 100%;
+}
+
 input {
     background-color: #668899;
     border-radius: 6px;
@@ -41,16 +52,8 @@ input {
 
 }
 
-.button{
-    padding: 1em 2em;
-    margin: 1em 2em;
-    /*border: 2 solid white;*/
-    border-radius: 4px;
-    color: #080808;
-    background-color: #668899;
-    text-align: center;
-    font-size: 24px;
-    display: inline-block;
+.jumbotron .row h1 {
+    margin-top: -12px;
 }
 
 .save-cancel-delete-button{
@@ -70,9 +73,6 @@ input {
     margin: 0 5%;
 }
 
-.wrapper{
-    margin-bottom: 4em;
-}
 
 .form-field{
     width: 45%;
