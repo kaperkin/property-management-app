@@ -13,10 +13,8 @@ function init() {
     document.getElementById("owner_property_add").addEventListener("click", addProperty);
     document.getElementById("all_maintenance_requests").addEventListener("click", allMaintenanceRequests);
     document.getElementById("logout").addEventListener("click", logout);
-
     isManager = window.location.hash == "#view=manager";
     isRenter = window.location.hash == "#view=renter";
-    console.log(window.location.hash);
     viewHome();
 }
 
@@ -27,9 +25,10 @@ document.addEventListener("DOMContentLoaded", init);
 ///////////////////////////////////////////////////////////////////
 
 function userListener() {
-    console.log(this.responseText);
+    console.log('user listener');
     window.user = JSON.parse(this.responseText);
     if (user.user_id == "0"){
+        console.log('if sectio of user listener');
         window.location = "/";
     }
 }
@@ -43,9 +42,9 @@ function getUser() {
 getUser();
 
 function buildingListener() {
-    console.log(this.responseText);
+    //console.log(this.responseText);
     window.buildings = JSON.parse(this.responseText);
-    for (i = 0; i < buildings.length; i++) {
+    for (var i = 0; i < buildings.length; i++) {
         console.log(buildings[i].rental_name)
     }
     getMaintenance();
@@ -59,7 +58,7 @@ function getBuildings() {
 }
 
 function renterBuildingListener() {
-    console.log(this.responseText);
+    //console.log(this.responseText);
     window.buildings = JSON.parse(this.responseText);
     for (i = 0; i < buildings.length; i++) {
         console.log(buildings[i].rental_name)
@@ -75,7 +74,7 @@ function renterGetBuildings() {
 }
 
 function maintenanceListener() {
-    console.log(this.responseText);
+    //console.log(this.responseText);
     window.maintenances = JSON.parse(this.responseText);
     showOwnerView();
 }
@@ -88,9 +87,9 @@ function getMaintenance() {
 }
 
 function statusListener(){
-    console.log(this.responseText);
+    //console.log(this.responseText);
     window.statusList = JSON.parse(this.responseText);
-    console.log(statusList);
+    //console.log(statusList);
     console.log(statusList.length);
 }
 
@@ -116,6 +115,7 @@ function viewHome(){
     if (window.isManager){
         getBuildings();
     }else {
+        console.log('viewHome function');
         showRenterView();
     }
 }
@@ -123,6 +123,7 @@ function viewHome(){
 ///////// Show views /////////////////////////////////
 /////////////////////////////////////////////////////
 function showRenterView() {
+    console.log('showRenterView function');
     getStatus();
     var element = document.getElementById("renter_maintenance_link");
     element.style.display = "inline-block";
@@ -222,7 +223,7 @@ function addMaintenanceRequest() {
     var bl = document.getElementById("buildingList");
     //create for loop to add to list using buildings obtained with oreq variable
     for (var b = 0; b < buildings.length; b++) {
-        console.log(buildings[b].id);
+        //console.log(buildings[b].id);
         if (buildings[b].id == user.building_id) {
             bl.style.display = "none";
             bl.value= buildings[b].id;
@@ -292,7 +293,7 @@ function allMaintenanceRequests() {
     element.style.display = "block";
 
     for (var i = 0; i < maintenances.length; i++) {
-        console.log(maintenances[i]);
+        //console.log(maintenances[i]);
         var text = document.getElementById("showAllMaintenance");
 
         // add building name
