@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", init);
 
 function userListener() {
     console.log(this.responseText);
+    console.log(user);
     window.user = JSON.parse(this.responseText);
-    if (user.user_id == "0"){
+    if (user.['user_id'] == "0"){
         window.location = "/";
     }
 }

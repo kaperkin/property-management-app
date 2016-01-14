@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import datetime
 
-
 import json
 # Create your views here.
 
@@ -21,13 +20,14 @@ def index(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+
 @csrf_exempt
 def logged_in(request):
     output = {"user_id": 0}
     if request.user.is_authenticated():
         output["user_id"] = request.user.id
-        renterList = Renter.objects.filter(user = request.user)
-        managerList = Manager.objects.filter(user = request.user)
+        renterList = Renter.objects.filter(user=request.user)
+        managerList = Manager.objects.filter(user=request.user)
         if (len(renterList) > 0):
             renter = renterList[0]
             output["building_id"] = renter.building.id
@@ -37,6 +37,7 @@ def logged_in(request):
             output["manager_id"] = manager.id
     return HttpResponse(json.dumps(output))
 
+
 @csrf_exempt
 def login_view(request):
     username = request.POST['username']
@@ -45,8 +46,8 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            managerList = Manager.objects.filter(user = user)
-            renterList = Renter.objects.filter(user = user)
+            managerList = Manager.objects.filter(user=user)
+            renterList = Renter.objects.filter(user=user)
             if len(managerList) > 0:
                 return HttpResponseRedirect("/main.html#view=manager")
             elif len(renterList) > 0:
@@ -57,19 +58,21 @@ def login_view(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+
 @csrf_exempt
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
+
 
 @csrf_exempt
 def buildings(request):
     print(request.POST)
     if request.POST:
         if request.POST["id"] == "0":
-            rental=Rentals()
+            rental = Rentals()
         else:
-            rental=Rentals.objects.filter(id=request.POST["id"])[0]
+            rental = Rentals.objects.filter(id=request.POST["id"])[0]
         if request.POST["action"] == "DELETE":
             rental.delete()
         else:
@@ -83,7 +86,7 @@ def buildings(request):
     rentals = Rentals.objects.all()
     buildings = []
     for rental in rentals:
-        building= {
+        building = {
             "rental_name": rental.rental_name,
             "id": rental.id,
             "address": rental.address,
@@ -99,25 +102,26 @@ def status(request):
     statusList = Status.objects.all()
     status = []
     for s in statusList:
-        sitem= {
+        sitem = {
             "name": s.name,
             "id": s.id
         }
         status.append(sitem)
     return HttpResponse(json.dumps(status))
 
+
 @csrf_exempt
 def maintenance(request):
     if request.POST:
         print(request.POST)
-        if request.POST["mainId"]== "0":
+        if request.POST["mainId"] == "0":
             m = Maintenance()
         else:
             m = Maintenance.objects.filter(id=request.POST["mainId"])[0]
         if request.POST["action"] == "DELETE":
             m.delete()
         else:
-            m.rental = Rentals.objects.filter(id= request.POST["building_id"])[0]
+            m.rental = Rentals.objects.filter(id=request.POST["building_id"])[0]
             m.maintenance_rental = request.POST["maintenance_rental"]
             m.maintenance_author = request.POST["maintenance_author"]
             m.maintenance_request = request.POST["maintenance_request"]
@@ -129,7 +133,7 @@ def maintenance(request):
     maintenanceList = Maintenance.objects.all()
     maintenances = []
     for main in maintenanceList:
-        maintenance={
+        maintenance = {
             "mainId": main.id,
             "rental": main.rental.rental_name,
             "id": main.rental.id,
@@ -143,6 +147,7 @@ def maintenance(request):
         maintenances.append(maintenance)
     return HttpResponse(json.dumps(maintenances))
 
+
 @csrf_exempt
 def createUser(request):
     if request.POST:
@@ -154,20 +159,18 @@ def createUser(request):
         user.email = request.POST["email"]
         user.username = request.POST["username"]
         user.set_password(request.POST["password"])
-	user.last_login = datetime.datetime.now()
+        user.last_login = datetime.datetime.now()
         user.save()
         if request.POST["userType"] == "renter":
             renter = Renter()
             renter.user = user
             renter.building = Rentals.objects.filter(id=request.POST["building"])[0]
             renter.save()
-            return HttpResponse("renter: "+ str(renter.id) + ", user: " + str(user.id))
+            return HttpResponse("renter: " + str(renter.id) + ", user: " + str(user.id))
         else:
             manager = Manager()
             manager.user = user
             manager.save()
-            return HttpResponse("manager: "+ str(manager.id) + ", user: " + str(user.id))
+            return HttpResponse("manager: " + str(manager.id) + ", user: " + str(user.id))
     else:
         return HttpResponse("no success!")
-
-
