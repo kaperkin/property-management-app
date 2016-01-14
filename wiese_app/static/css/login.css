@@ -33,11 +33,11 @@ footer span a {
     color: #668899;
 }
 
-header {
+.jumbotron{
     text-align: left;
     color: #080808;
     height: 325px;
-    background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
+    background-image: url(portland-background.jpg);
     background-size: 100% 100%;
 }
 
