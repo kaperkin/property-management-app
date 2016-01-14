@@ -11,7 +11,6 @@ body {
 .button{
     padding: 1em 2em;
     margin: 1em 2em;
-    /*border: 2 solid white;*/
     border-radius: 4px;
     color: #080808;
     background-color: #668899;
@@ -35,12 +34,19 @@ footer span a {
 }
 
 header {
-    /*font-size: 2.5em;*/
     text-align: left;
     color: #080808;
     height: 325px;
     background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
     background-size: 100% 100%;
+}
+
+.jumbotron{
+    padding: 0;
+}
+
+.jumbotron h1{
+    font-size: 2.5em;
 }
 
 input {
@@ -49,18 +55,13 @@ input {
     color: #fff9fe;
     margin-bottom: .25em;
     font-size: 1em;
-
 }
 
-.header .col-lg-10 {
-    font-size: 2.5em;
-}
 
 .save-cancel-delete-button{
     padding: 0.5em 0.5em;
     margin: 1em 1em;
-    border: 2px solid white;
-    border-radius: 12px;
+    border-radius: 8px;
     color: white;
     background-color: #668899;
     text-align: center;
