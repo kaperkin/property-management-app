@@ -20,6 +20,7 @@
             crossorigin="anonymous"></script>
     <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet'
           type='text/css'>
+    <link rel="stylesheet" type="text/css" href='/css/base.css'/>
     <link rel="stylesheet" type="text/css" href='/css/login.css'/>
 </head>
 <body>
@@ -31,7 +32,7 @@
 
 <!-- welcome view -->
 <div class="container">
-    <div class="wrapper content" id="welcomeButtons">
+    <div class="content" id="welcomeButtons">
         <!--show renter view, hide all else -->
         <div class="button" id="renterButton">Renter</div>
         <!--show owner view(old index) hide all else -->
@@ -40,17 +41,15 @@
 
 
     <div id="login" class="content form-field">
-        <form action="/login/" method="POST">
-            <fieldset>
+        <form class='form-horizontal' action="/login/" method="POST">
+            <fieldset class="form-group">
                 <legend>Sign In</legend>
                 <div class="inner-form">
-                    <label>UserName
-                        <input type="text" name="username">
-                    </label><br>
+                    <label for="username">UserName </label>
+                        <input type="text" name="username" id="username">
 
-                    <label>Password
-                        <input type="password" name="password">
-                    </label><br>
+                    <label for="password">Password </label>
+                        <input type="password" name="password" id="password">
                 </div>
                 <button class="save-cancel-delete-button" type="submit" value="login">login
             </fieldset>

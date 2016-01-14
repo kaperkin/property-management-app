@@ -1,0 +1,46 @@
+body {
+    background-color: #f0f0f0;
+    color: #080808;
+    font-size: 20px;
+    font-family: 'Merriweather', sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.button{
+    padding: 1em 2em;
+    margin: 1em 2em;
+    border-radius: 4px;
+    color: #080808;
+    background-color: #668899;
+    text-align: center;
+    font-size: 24px;
+    display: inline-block;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1em 0;
+    background-color: #e0e0e0;
+    text-align: center;
+}
+
+footer span a {
+    color: #668899;
+}
+
+.jumbotron{
+    text-align: left;
+    color: #080808;
+    height: 325px;
+    background-image: url(portland-background.jpg);
+    background-size: 100% 100%;
+    padding: 0;
+}
+
+.jumbotron h1{
+    font-size: 2.5em;
+}
