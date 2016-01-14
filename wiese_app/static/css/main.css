@@ -1,13 +1,4 @@
 
-header {
-    font-size: 3em;
-    text-align: center;
-    color: #198f77;
-    height: 325px;
-    text-decoration: underline;
-    background-image: url("https://farm6.staticflickr.com/5088/5371067958_a4553e2bc0_o_d.jpg");
-    background-size: 100% 100%;
-}
 
 a {
     color: #fff9fe;
@@ -34,33 +25,11 @@ footer{
     text-align: center;
 }
 
-.button{
-    padding: 1em 2em;
-    margin: 1em 2em;
-    border: 2px solid white;
-    border-radius: 12px;
-    color: white;
-    background-color: #668899;
-    text-align: center;
-    font-size: 24px;
-    display: inline-block;
-}
 
 .button-panel{
     text-align: center;
 }
 
-.save-cancel-delete-button{
-    padding: 0.5em 0.5em;
-    margin: 1em 1em;
-    border: 2px solid white;
-    border-radius: 12px;
-    color: white;
-    background-color: #668899;
-    text-align: center;
-    font-size: 18px;
-    display: inline-block;
-}
 .content{
     display: none;
     margin: 0 5%;

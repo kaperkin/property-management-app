@@ -8,15 +8,9 @@ input {
 }
 
 
-.save-cancel-delete-button{
-    padding: 0.5em 0.5em;
-    margin: 1em 1em;
-    border-radius: 8px;
-    color: white;
-    background-color: #668899;
-    text-align: center;
-    font-size: 18px;
-    display: inline-block;
+
+.cancel{
+    background-color: #E47D3C;
 }
 
 .content{
@@ -24,16 +18,6 @@ input {
     margin: 0 5%;
 }
 
-
-.form-field{
-    width: 45%;
-    margin: 2em auto;
-}
-
-.inner-form{
-    text-align: right;
-    padding-right: 4em;
-}
 
 #welcomeButtons{
     margin: 3em auto;
@@ -53,7 +37,7 @@ input {
 }
 
 #buildingList{
-    background-color: #195f77;
+    background-color: #668899;
     color: #fff9fe;
     min-height: 2em;
     margin-bottom: .25em;

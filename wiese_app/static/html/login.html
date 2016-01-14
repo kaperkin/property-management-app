@@ -40,63 +40,97 @@
     </div>
 
 
-    <div id="login" class="content form-field">
+    <div id="login" class="content">
         <form class='form-horizontal' action="/login/" method="POST">
-            <fieldset class="form-group">
+            <div>
                 <legend>Sign In</legend>
-                <div class="inner-form">
-                    <label for="username">UserName </label>
-                        <input type="text" name="username" id="username">
+                <div class="form-group">
+                    <label for="username" class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Username </label>
 
-                    <label for="password">Password </label>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input type="text" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Password </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                         <input type="password" name="password" id="password">
+                    </div>
                 </div>
                 <button class="save-cancel-delete-button" type="submit" value="login">login
-            </fieldset>
+            </div>
         </form>
-        <h3 id="newUser" style="text-decoration: underline">Create New User</h3>
+        <div class="save-cancel-delete-button" id="newUser">Create New User</div>
     </div>
 
     <div id="createUser" class="content form-field">
         <h3>Register</h3>
 
-        <div>
+        <div class="form-horizontal">
             <fieldset>
                 <input type="hidden" value="0" id="id">
                 <input type="hidden" value="" id="userType"
                 <!-- Unused input connected to changeValue() in login.js-->
                 <!--<input type="hidden" value="0" id="BuildingId">-->
                 <legend>Contact Information</legend>
-                <div class="inner-form">
-                    <div id="buildingListContainer">
-                        <label id="building-label">Building</label>
+
+                <div class="form-group" id="buildingListContainer">
+                    <label class="col-xs-12 col-sm-12 col-md-2  col-lg-4 "
+                           id="building-label" for="buildingList">Building</label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                         <select name="rental" id="buildingList">
                         </select>
                     </div>
-                    <br>
-
-                    <label>First Name
-                        <input id="first_name" type="text" name="first_name">
-                    </label><br>
-
-                    <label>Last Name
-                        <input id="last_name" type="text" name="last_name">
-                    </label><br>
-
-                    <label>Email
-                        <input id="email" type="text" name="email">
-                    </label><br>
-
-                    <label>UserName
-                        <input id="username" type="text" name="username">
-                    </label><br>
-
-                    <label>Password
-                        <input id="password" type="password" name="password">
-                    </label><br>
                 </div>
-                <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
-                <div class="save-cancel-delete-button" onclick="home()">Cancel</div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-12 col-md-2  col-lg-4 "
+                           for="first_name">First Name </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input id="first_name" type="text" name="first_name">
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+
+                    <label class="col-xs-12 col-sm-12 col-md-2  col-lg-4 "
+                           for="last_name">Last Name </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input id="last_name" type="text" name="last_name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-12 col-md-2 col-lg-4 "
+                           for="email">Email </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input id="email" type="text" name="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-12 col-md-2 col-lg-4 ">UserName </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input id="username" type="text" name="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-12 col-md-2 col-lg-4 "
+                           for="password">Password </label>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <input id="password" type="password" name="password">
+                    </div>
+                </div>
+                    <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
+                    <div class="save-cancel-delete-button cancel" onclick="home()">Cancel</div>
             </fieldset>
         </div>
     </div>
