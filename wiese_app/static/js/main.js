@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", init);
 function userListener() {
     console.log('user listener');
     window.user = JSON.parse(this.responseText);
-    //console.log( window.user);
+    console.log(user.user_id);
     if (user['user_id'] == "0"){
         console.log('if section of user listener');
         window.location = "/";
