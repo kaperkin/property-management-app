@@ -18,8 +18,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+    <!-- google font -->
     <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin-ext,latin' rel='stylesheet'
           type='text/css'>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- my styles -->
     <link rel="stylesheet" type="text/css" href='/css/base.css'/>
     <link rel="stylesheet" type="text/css" href='/css/login.css'/>
 </head>
@@ -32,40 +36,62 @@
 
 <!-- welcome view -->
 <div class="container">
-    <div class="content" id="welcomeButtons">
-        <!--show renter view, hide all else -->
-        <div class="button" id="renterButton">Renter</div>
-        <!--show owner view(old index) hide all else -->
-        <div class="button" id="ownerButton">Manager</div>
+    <div class="content row" id="welcomeButtons">
+        <div class="col-lg-7">
+            <h2>Wiese Properties</h2>
+
+            <p>Looking for a new home? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed
+                sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et
+                mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue
+                enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis,
+                pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.
+                Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in
+                urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu
+                rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+        </div>
+        <div class="col-lg-5">
+            <!--show renter view, hide all else -->
+            <div class="button" id="renterButton"><span class="fa fa-user"></span> Renter</div>
+            <!--show owner view(old index) hide all else -->
+            <div class="button" id="ownerButton"><span class="fa fa-user"></span> Manager</div>
+        </div>
     </div>
 
+    <!-- sign in -->
+    <div class="text-center">
+        <div id="login" class="content">
+            <form class='form-horizontal' action="/login/" method="POST">
+                <div>
+                    <div>Sign In</div>
+                    <div class="form-group">
+                        <label for="username"
+                               class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Username </label>
 
-    <div id="login" class="content">
-        <form class='form-horizontal' action="/login/" method="POST">
-            <div>
-                <legend>Sign In</legend>
-                <div class="form-group">
-                    <label for="username" class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Username </label>
-
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                        <input type="text" name="username" id="username">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                            <input type="text" name="username" id="username">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Password </label>
+                    <div class="form-group">
+                        <label for="password"
+                               class="col-xs-12 col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-2">Password </label>
 
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                        <input type="password" name="password" id="password">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                            <input type="password" name="password" id="password">
+                        </div>
                     </div>
+                    <button class="save-cancel-delete-button" type="submit" value="login">login</button>
+                    <div class="save-cancel-delete-button cancel" id="cancel">Cancel</div>
                 </div>
-                <button class="save-cancel-delete-button" type="submit" value="login">login</button>
-                <div class="save-cancel-delete-button cancel" onclick="home()">Cancel</div>
-            </div>
-        </form>
-        <div class="save-cancel-delete-button" id="newUser">Create New User</div>
+            </form>
+            <div class="save-cancel-delete-button" id="newUser"><span class="fa fa-user-plus"></span> New User</div>
+        </div>
     </div>
+    <!-- end of sign-in -->
 
+    <!-- new user -->
     <div id="createUser" class="content form-field">
+
         <h3>Register</h3>
 
         <div class="form-horizontal">
@@ -131,11 +157,13 @@
                     </div>
                 </div>
                 <div class="save-cancel-delete-button" onclick="addUser()">Save</div>
-                <div class="save-cancel-delete-button cancel" onclick="home()">Cancel</div>
+                <div class="save-cancel-delete-button cancel" onclick="welcomeButton()">Cancel</div>
             </fieldset>
         </div>
     </div>
-</div
+    <!-- end of new user -->
+</div>
+
 
 <footer>
     <span>Check out my code on <a href="https://github.com/kaperkin">GitHub</a></span>

@@ -3,6 +3,7 @@ function initLogin(){
     document.getElementById("ownerButton").addEventListener("click", setUserType);
     document.getElementById("header").addEventListener("click", welcomeButton);
     document.getElementById('newUser').addEventListener("click", newUser);
+    document.getElementById('cancel').addEventListener("click", welcomeButton);
     document.getElementById('welcomeButtons').style.display = "inline-block";
 }
 document.addEventListener("DOMContentLoaded", initLogin);

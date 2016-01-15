@@ -57,7 +57,9 @@
                     <!--on click show update_building section index[0] -->
                     <div class="button col-lg-6" id="owner_property_add"><span class="fa fa-plus"></span> property</div>
                     <!--on click show update request index[0] -->
-                    <div class="button col-lg-6" id="owner_maintenance_add"><span class="fa fa-plus"></span> maintenance request</div>
+                    <div class="button col-lg-6" id="owner_maintenance_add"><span class="fa fa-plus"></span> maintenance
+                        request
+                    </div>
                     <!--show all maintenance requests -->
                 </div>
             </div>
@@ -74,56 +76,82 @@
             </ul>
         </div>
     </div>
-</div>
-</div>
 
-<!--update maintenance, add maintenance request -->
-<div class="content form-field" id="maintenanceRequest" method="POST">
-    <fieldset>
-        <legend>Maintenance Request</legend>
-        <input type="hidden" value="0" id="mainId">
-        <label>Building</label><br>
-        <select name="rental" id="buildingList">
-        </select><span id="buildingName"></span><br>
-        <label>Unit Number</label><br>
-        <input name="maintenance_rental" id="maintenance_rental"><br>
-        <label>Tenant Name</label><br>
-        <input name="maintenance_author" id="maintenance_author"><br>
-        <label>Maintenance Request</label><br>
-        <textarea name="maintenance_request" id="maintenance_request" cols="20" rows="4"></textarea><br>
 
-        <div id="statusDiv">
+    <!--update maintenance, add maintenance request -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-3">
+            <div class="content form-horizontal" id="maintenanceRequest" method="POST">
+                <fieldset>
+                    <legend>Maintenance Request</legend>
+
+                    <input type="hidden" value="0" id="mainId">
+
+                    <div class="form-group">
+                        <label class='col-lg-3 col-lg-offset-1' for="buildingList">Building</label>
+
+                        <div class="col-lg-6">
+                            <select name="rental" id="buildingList">
+                            </select><span id="buildingName"></span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class='col-lg-3 col-lg-offset-1' for="maintenance_rental">Unit Number</label>
+
+                        <div class="col-lg-6">
+                            <input name="maintenance_rental" id="maintenance_rental">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='col-lg-3 col-lg-offset-1' for="maintenance_author">Tenant Name</label>
+
+                        <div class="col-lg-6">
+                            <input name="maintenance_author" id="maintenance_author">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='col-lg-3 col-lg-offset-1' for="maintenance_request">Maintenance Request</label>
+
+                        <div class="col-lg-6">
+                            <textarea name="maintenance_request" id="maintenance_request" cols="20" rows="4"></textarea><br>
+                        </div>
+                    </div>
+
+                    <div class="" id="statusDiv"></div>
+                </fieldset>
+                <div class="text-center">
+
+                <div class="save-cancel-delete-button" onclick="sendMaintenanceRequest()" value="SAVE">Save</div>
+                <div class="save-cancel-delete-button cancel" onclick="viewHome()">Cancel</div>
+
+            </div>
         </div>
-    </fieldset>
-    <div class="save-cancel-delete-button" onclick="sendMaintenanceRequest()" value="SAVE">Save</div>
-    <div class="save-cancel-delete-button cancel" onclick="viewHome()">Cancel</div>
-</div>
-
-<!-- update building, add new property -->
-<div class="content form-field" id="updateAddBuilding" method="POST">
-    <fieldset>
-        <legend>Property</legend>
-        <input type="hidden" value="0" id="id">
-        <label>Rental Name</label><br>
-        <input name="rental_name" id="rental_name"><br>
-        <label>Address</label><br>
-        <input name="address" id="address"><br>
-        <label>City</label><br>
-        <input name="city" id="city"><br>
-        <label>State</label><br>
-        <input name="state" id="state"><br>
-        <label>Zipcode</label><br>
-        <input name="zipcode" id="zipcode"><br>
-    </fieldset>
-    <div class="save-cancel-delete-button" onclick="sendBuildingUpdate()" value="SAVE" name="action">Save</div>
-    <div class="save-cancel-delete-button cancel" onclick="viewHome()">Cancel</div>
-    <br>
-
-    <div class="save-cancel-delete-button cancel" onclick="deleteBuilding()" value="DELETE" name="action"
-         id="delete"><span class="glyphicon glyphicon-trash"> </span>
-        Delete Property
     </div>
-</div>
+
+    <!-- update building, add new property -->
+    <div class="content form-field" id="updateAddBuilding" method="POST">
+        <fieldset>
+            <legend>Property</legend>
+            <input type="hidden" value="0" id="id">
+            <label>Rental Name</label><br>
+            <input name="rental_name" id="rental_name"><br>
+            <label>Address</label><br>
+            <input name="address" id="address"><br>
+            <label>City</label><br>
+            <input name="city" id="city"><br>
+            <label>State</label><br>
+            <input name="state" id="state"><br>
+            <label>Zipcode</label><br>
+            <input name="zipcode" id="zipcode"><br>
+        </fieldset>
+        <div class="save-cancel-delete-button" onclick="sendBuildingUpdate()" value="SAVE" name="action">Save</div>
+        <div class="save-cancel-delete-button cancel" onclick="viewHome()">Cancel</div>
+        <br>
+
+        <div class="save-cancel-delete-button cancel" onclick="deleteBuilding()" value="DELETE" name="action"
+             id="delete"><span class="glyphicon glyphicon-trash"> </span>
+            Delete Property
+        </div>
+    </div>
 
 </div>
 <footer>

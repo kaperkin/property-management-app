@@ -214,16 +214,23 @@ function addMaintenanceRequest() {
 
     //create radio buttons for status
     for (var i=0; i<statusList.length; i++){
+        var div = document.createElement('div');
+        var miniFormGroup = document.createElement('div');
         var r = document.createElement("input");
+        div.className='col-lg-6';
+        miniFormGroup.className='radio-div';
         r.setAttribute('type', 'radio');
         r.setAttribute('name', 'status');
-        r.className = 'radio';
+        r.className = 'radio radio-and-label';
         r.setAttribute('id', statusList[i].id);
         var label = document.createElement("label");
         label.setAttribute('for', statusList[i].name );
+        label.className = 'radio-and-label';
         label.innerHTML=statusList[i].name;
-        statusDiv.appendChild(r);
-        statusDiv.appendChild(label);
+        miniFormGroup.appendChild(r);
+        miniFormGroup.appendChild(label);
+        div.appendChild(miniFormGroup);
+        statusDiv.appendChild(div);
     }
 
     // Get drop down list for building list

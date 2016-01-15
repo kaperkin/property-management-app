@@ -2,13 +2,7 @@
     padding-right: 4em;
 }
 
-#buildingList{
-    background-color: #668899;
-    color: #fff9fe;
-    min-height: 2em;
-    margin-bottom: .25em;
-    font-size: .85em;
-}
+
 
 .content{
     display: none;
