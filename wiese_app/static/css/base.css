@@ -8,7 +8,7 @@ body {
     text-align: center;
 }
 
-.button{
+.button {
     padding: 1em 2em;
     margin: 1em 2em;
     border-radius: 4px;
@@ -18,7 +18,8 @@ body {
     font-size: 24px;
     display: inline-block;
 }
-footer{
+
+footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -41,8 +42,7 @@ input {
     font-size: 1em;
 }
 
-
-.jumbotron{
+.jumbotron {
     text-align: left;
     color: #080808;
     height: 325px;
@@ -51,12 +51,11 @@ input {
     padding: 0;
 }
 
-.jumbotron h1{
+.jumbotron h1 {
     font-size: 2.5em;
 }
 
-
-.save-cancel-delete-button{
+.save-cancel-delete-button {
     padding: 0.5em 0.5em;
     margin: 1em 1em;
     border-radius: 6px;
@@ -67,10 +66,10 @@ input {
     display: inline-block;
 }
 
-.save-cancel-delete-button:hover{
+.save-cancel-delete-button:hover {
     cursor: hand;
 }
 
-select{
+select {
     border: none;
 }

@@ -1,30 +1,3 @@
-
-
-
-
-.cancel{
-    background-color: #E47D3C;
-}
-
-.content{
-    display: none;
-    margin: 0 5%;
-}
-
-
-#welcomeButtons{
-    margin: 3em auto;
-}
-
-#login{
-    margin-top: 25px;
-}
-
-#createUser{
-    margin-bottom: 4em;
-    margin-top: 0;
-}
-
 #building-label{
     padding-right: 4em;
 }
@@ -36,3 +9,28 @@
     margin-bottom: .25em;
     font-size: .85em;
 }
+
+.cancel{
+    background-color: #E47D3C;
+}
+
+.content{
+    display: none;
+    margin: 0 5%;
+}
+
+#createUser{
+    margin-bottom: 4em;
+    margin-top: 0;
+}
+
+#login{
+    margin-top: 25px;
+}
+
+#welcomeButtons{
+    margin: 3em auto;
+}
+
+
+
