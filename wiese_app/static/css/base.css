@@ -24,12 +24,14 @@ body {
     font-size: 20px;
 }
 
+.container {
+    margin-bottom: 4em;
+}
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    margin-top: 80px;
     padding: 1em 0;
     background-color: #e0e0e0;
     text-align: center;
