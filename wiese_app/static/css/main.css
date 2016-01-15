@@ -12,39 +12,37 @@ a {
     font-size: .75em;
 }
 
-.button-panel {
-    text-align: center;
+.buildingDetail{
+    margin-bottom: 12px;
 }
+/*.button-panel {*/
+    /*text-align: center;*/
+/*}*/
 
 .content {
     display: none;
-    margin: 0 5%;
+    /*margin: 0 5%;*/
 }
 
 #delete {
     background-color: #E47D3C;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1em 0;
-    background-color: #195f77;
-    text-align: center;
-}
+/*footer {*/
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*padding: 1em 0;*/
+    /*background-color: #195f77;*/
+    /*text-align: center;*/
+/*}*/
 
-.form-field {
-    width: 40%;
-    margin: 2em auto;
-}
+/*.form-field {*/
+    /*width: 40%;*/
+    /*margin: 2em auto;*/
+/*}*/
 
-input {
-    background-color: #195f77;
-    color: #fff9fe;
-    min-height: 2em;
-}
 
 input[type="radio"] {
     height: 1.5em;
@@ -58,21 +56,21 @@ input[type="radio"] {
 }
 
 #maintenance_request {
-    background-color: #195f77;
-    color: #fff9fe;
+    background-color: #668899;
+    color: #080808;
 }
 
 #renter_maintenance_link {
     margin: 2em;
 }
 
-#showAllMaintenance > li {
-    display: inline-block;
-    min-height: 8em;
-    vertical-align: top;
-    margin: 2em;
-    width: 40%;
-}
+/*#showAllMaintenance > li {*/
+    /*display: inline-block;*/
+    /*min-height: 8em;*/
+    /*vertical-align: top;*/
+    /*margin: 2em;*/
+    /*width: 40%;*/
+/*}*/
 
 .wrapper {
 

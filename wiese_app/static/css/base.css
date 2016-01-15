@@ -5,18 +5,17 @@ body {
     font-family: 'Merriweather', sans-serif;
     margin: 0;
     box-sizing: border-box;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .button {
-    padding: 1em 2em;
+    padding: .5em;
     margin: 1em 2em;
     border-radius: 4px;
     color: #080808;
     background-color: #668899;
     text-align: center;
-    font-size: 24px;
-    display: inline-block;
+    font-size: 20px;
 }
 
 footer {
@@ -37,7 +36,7 @@ input {
     background-color: #668899;
     border: none;
     border-radius: 4px;
-    color: #fff9fe;
+    color: #080808;
     margin-bottom: .25em;
     font-size: 1em;
 }
@@ -68,6 +67,9 @@ input {
 
 .save-cancel-delete-button:hover {
     cursor: hand;
+}
+.cancel{
+    background-color: #E47D3C;
 }
 
 select {

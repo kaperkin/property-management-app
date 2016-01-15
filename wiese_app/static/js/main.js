@@ -93,7 +93,7 @@ function statusListener(){
     //console.log(this.responseText);
     window.statusList = JSON.parse(this.responseText);
     //console.log(statusList);
-    console.log(statusList.length);
+    //console.log(statusList.length);
 }
 
 function getStatus(){
@@ -118,7 +118,7 @@ function viewHome(){
     if (window.isManager){
         getBuildings();
     }else {
-        console.log('viewHome function');
+        //console.log('viewHome function');
         showRenterView();
     }
 }
@@ -141,6 +141,10 @@ function showOwnerView() {
     text.innerHTML = "";
     // loop to append building details.
     for (i = 0; i < buildings.length; i++) {
+        //create div
+        var div = document.createElement('div');
+        div.className = "col-lg-4 buildingDetail";
+        text.appendChild(div);
         // add building name
         var buildingName = document.createElement("li");
         buildingName.style.textDecoration = "underline";
@@ -149,10 +153,10 @@ function showOwnerView() {
             editProperty(e.target.getAttribute("data-id"));
         });
         buildingName.innerHTML = buildings[i].rental_name;
-        text.appendChild(buildingName);
+        div.appendChild(buildingName);
         // add blank ul
         var blankUL = document.createElement("ul");
-        text.appendChild(blankUL);
+        div.appendChild(blankUL);
         //add building address
         var buildingAddress = document.createElement("li");
         buildingAddress.innerHTML = buildings[i].address;
