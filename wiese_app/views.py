@@ -54,10 +54,11 @@ def login_view(request):
                 return HttpResponseRedirect("/main.html#view=renter")
             else:
                 return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/")
     # template = loader.get_template('/')
     # context = RequestContext(request)
     # return HttpResponse(template.render(context))
-    return HttpResponseRedirect("/")
+
 
 
 @csrf_exempt
