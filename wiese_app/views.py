@@ -54,7 +54,7 @@ def login_view(request):
                 return HttpResponseRedirect("/main.html#view=renter")
             else:
                 return HttpResponseRedirect("/")
-    template = loader.get_template('/wiese_app/static/html/login.html')
+    template = loader.get_template('/')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
