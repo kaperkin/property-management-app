@@ -47,16 +47,16 @@ def login_view(request):
         if user.is_active:
             login(request, user)
             managerList = Manager.objects.filter(user=user)
-            renterList = Renter.objects.filter(user=user)
-            if len(managerList) > 0:
-                return HttpResponseRedirect("/main.html#view=manager")
-            elif len(renterList) > 0:
-                return HttpResponseRedirect("/main.html#view=renter")
-            else:
-                return HttpResponseRedirect("/")
+            # renterList = Renter.objects.filter(user=user)
+            # if len(managerList) > 0:
+            #     return HttpResponseRedirect("/main.html#view=manager")
+            # elif len(renterList) > 0:
+            return HttpResponseRedirect("/main.html#view=renter")
+            # else:
+            #     return HttpResponseRedirect("/")
     template = loader.get_template('/wiese_app/static/html/login.html')
     context = RequestContext(request)
-    return HttpResponse(template.render(context))
+    # return HttpResponse(template.render(context))
 
 
 @csrf_exempt
