@@ -46,7 +46,7 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            # managerList = Manager.objects.filter(user=user)
+            managerList = Manager.objects.filter(user=user)
             renterList = Renter.objects.filter(user=user)
             if len(managerList) > 0:
                 return HttpResponseRedirect("/main.html#view=manager")
